@@ -11,23 +11,38 @@
   <script type="text/javascript" src="cordova.js"></script>
   <script src="cordova.js"></script>
   <script src="js/main.js"></script>
-  <style>.hide{display: none;}</style> <!-- style for hiding pages -->
 </head>
 
 <body>
 
-<div data-role="page" class="view" id="home">
+<div data-role="page" class="ui-page-theme-b view" id="home">
  	<div data-role="header">
  		<h1>Home</h1>
- 			<div data-role="navbar">
+    <!-- <a href="#menu" data-icon="bars" data-iconpos="notext" class="" title="Menu">
+      <span class="ui-btn-inner">
+        <span class="ui-btn-text">Menu</span>
+        <span class="ui-icon ui-icon-bars ui-icon-shadow">&nbsp;</span>
+      </span>
+    </a> -->
+    <a href="#menu" data-icon="bars" data-iconpos="notext" class="" data-theme="b" title="Menu">
+      <span class="ui-btn-inner">
+        <span class="ui-btn-text">Menu</span>
+        <span class="ui-icon ui-icon-bars ui-icon-shadow">&nbsp;</span>
+      </span>
+    </a>
+ 			<div data-role="navbar" class="ui-listview-inset">
  				<ul>
-          <li><a href="#home" data-transition="pop" data-icon="home">Home</a></li>
-          <li><a href="#p2" data-transition="pop" data-icon="plus">p2</a></li>
-          <li><a href="#p3" data-transition="pop" data-icon="star">p3</a></li>
+          <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
+          <li><a href="#p2" data-transition="pop" data-icon="plus" class="ui-icon-plus">p2</a></li>
+          <li><a href="#p3" data-transition="pop" data-icon="star" class="ui-icon-star">p3</a></li>
  				</ul>
  			</div>
  	</div>
- 	<div div role="main" class="ui-content">
+  <div id="offline" class="fixed">
+    <h1> Hold!</h1>
+    <p> Offline</p>
+  </div>
+ 	<div  data="main" class="ui-content">
  		<h2>Boom!</h2>
  		<p>homepage</p>
  	</div>
@@ -36,18 +51,22 @@
   </div>
 </div>
 
-<div data-role="page" class="view hide" id="p2">
+<div data-role="page" class="ui-page-theme-b view hide" id="p2">
  	<div data-role="header">
  		<h1>p2</h1>
- 			<div data-role="navbar">
+ 			<div data-role="navbar" class="ui-listview-inset">
  				<ul>
- 					<li><a href="#home" data-transition="pop" data-icon="home">Home</a></li>
-          <li><a href="#p2" data-transition="pop" data-icon="plus">p2</a></li>
-          <li><a href="#p3" data-transition="pop" data-icon="star">p3</a></li>
+ 					<li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
+          <li><a href="#p2" data-transition="pop" data-icon="plus" class="ui-icon-plus">p2</a></li>
+          <li><a href="#p3" data-transition="pop" data-icon="star" class="ui-icon-star">p3</a></li>
  				</ul>
  			</div>
  	</div>
- 	<div div role="main" class="ui-content">
+  <div id="offline" class="fixed">
+    <h1> Hold!</h1>
+    <p> Offline</p>
+  </div>
+ 	<div role="main" class="ui-content">
  		<h2>Boom!</h2>
  		<p>first page</p>
  	</div>
@@ -56,17 +75,21 @@
   </div>
 </div>
 
-<div data-role="page" class="view hide" id="p3">
+<div data-role="page" class="ui-page-theme-b view hide" id="p3">
  	<div data-role="header">
  		<h1>p3</h1>
- 			<div data-role="navbar">
+ 			<div data-role="navbar" class="ui-listview-inset">
  				<ul>
-          <li><a href="#home" data-transition="pop" data-icon="home">Home</a></li>
-          <li><a href="#p2" data-transition="pop" data-icon="plus">p2</a></li>
-          <li><a href="#p3" data-transition="pop" data-icon="star">p3</a></li>
+          <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
+          <li><a href="#p2" data-transition="pop" data-icon="plus" class="ui-icon-plus">p2</a></li>
+          <li><a href="#p3" data-transition="pop" data-icon="star" class="ui-icon-star">p3</a></li>
  				</ul>
  			</div>
  	</div>
+  <div id="offline" class="fixed">
+    <h1> Hold!</h1>
+    <p> Offline</p>
+  </div>
  	<div div role="main" class="ui-content">
  		<h2>Boom!</h2>
  		<p>second page</p>

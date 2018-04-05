@@ -1,16 +1,17 @@
 
 // use when testing phone gap as will not get fired in browser
 document.addEventListener("deviceready", onDeviceReady, false);
-function setup() {
-  navigator.notification.alert(
-    'You are the winner!', // message
-    alertDismissed, // callback
-    'Game Over', // title
-    'Done' // buttonName
-  );
-};
+// function setup() {
+//   navigator.notification.alert(
+//     'You are the winner!', // message
+//     alertDismissed, // callback
+//     'Game Over', // title
+//     'Done' // buttonName
+//   );
+// };
 
 $(document).ready(function (e) {
+  console.log("app ready");
   function showView(currentView) {
     $('.view').hide();
     $(currentView).show();
@@ -22,16 +23,28 @@ $(document).ready(function (e) {
     showView(currentView);
   });
 
+  innit()
 });
 
 function onDeviceReady(){
-  console.log("device ready");
-  document.addEventListener('pause', on_Pause, false);
-  document.addEventListener('menubutton', on_Pause, false);
-  document.addEventListener('backbutton', on_Pause, false);
-  document.addEventListener('searchbutton', on_Pause, false);
-  document.addEventListener('online', on_Pause, false);
-  document.addEventListener('offline', on_Pause, false);
+  console.log("app ready");
+  function showView(currentView) {
+    $('.view').hide();
+    $(currentView).show();
+  }
+
+  $('a').click("touchstart", function (e) {
+    e.preventDefault();
+    var currentView = $(this).attr('href');
+    showView(currentView);
+  });
+
+  innit()
+}
+
+function innit() {
+  document.addEventListener("online", ononline, false);
+  document.addEventListener("offline", onoffline, false);
 
   if(window.navigator.online){
     $('body').addclass('online');
@@ -43,4 +56,14 @@ function onDeviceReady(){
     $('body').addclass('offline');
 
   }
+}
+
+function onoffline() {
+  $('body').removeClass('online');
+  $('body').addclass('offline');
+}
+
+function ononline() {
+  $('body').removeClass('offline');
+  $('body').addclass('online');
 }

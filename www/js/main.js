@@ -28,16 +28,6 @@ $(document).ready(function (e) {
 
 function onDeviceReady(){
   console.log("app ready");
-  function showView(currentView) {
-    $('.view').hide();
-    $(currentView).show();
-  }
-
-  $('a').click("touchstart", function (e) {
-    e.preventDefault();
-    var currentView = $(this).attr('href');
-    showView(currentView);
-  });
 
   innit()
 }

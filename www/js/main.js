@@ -1,14 +1,43 @@
 
 // use when testing phone gap as will not get fired in browser
 document.addEventListener("deviceready", onDeviceReady, false);
-// function setup() {
-//   navigator.notification.alert(
-//     'You are the winner!', // message
-//     alertDismissed, // callback
-//     'Game Over', // title
-//     'Done' // buttonName
-//   );
-// };
+
+
+/*
+ * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html
+ * Geolocation documentation: http://dev.w3.org/geo/api/spec-source.html
+ */
+$( document ).on( "pageinit", "#map", function() {
+    var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
+    if ( navigator.geolocation ) {
+        function success(pos) {
+            // Location found, show map with these coordinates
+            drawMap(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        }
+        function fail(error) {
+            drawMap(defaultLatLng);  // Failed to find location, show default map
+        }
+        // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
+        navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
+    } else {
+        drawMap(defaultLatLng);  // No geolocation support, show default map
+    }
+    function drawMap(latlng) {
+        var myOptions = {
+            zoom: 10,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        // Add an overlay to the map of current lat/lng
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: "Greetings!"
+        });
+        console.log("map ready")
+    }
+});
 
 $(document).ready(function (e) {
   console.log("app ready");
@@ -27,7 +56,8 @@ $(document).ready(function (e) {
 });
 
 function onDeviceReady(){
-  console.log("app ready");
+  console.log("device ready");
+
 
   innit()
 }
@@ -42,9 +72,7 @@ function innit() {
   }
 
   else{
-    console.log('offline');
-    $('body').addclass('offline');
-
+    console.log('window navigator offline');
   }
 }
 

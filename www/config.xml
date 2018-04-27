@@ -17,7 +17,8 @@
       This allows your app to load assets from all *.phongap.com domains
     -->
 	<access origin="*" />
-
+  <allow-navigation href="http://*/*" />
+  <allow-intent href="https://*/*" />
 	 <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -78,7 +79,7 @@
 -->
 
     <!-- Third party plugins -->
-
+  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 
 	<!--//these are generic not good enough for a live build - you will nedd to be os and device specific (android can use 9 slice png)-->
 	<icon src="icon.png" />

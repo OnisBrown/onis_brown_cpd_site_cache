@@ -2,6 +2,26 @@
 // use when testing phone gap as will not get fired in browser
 document.addEventListener("deviceready", onDeviceReady, false);
 
+function onDeviceReady(){
+  console.log("device ready");
+
+
+  innit()
+}
+
+function innit() {
+  document.addEventListener("online", ononline, false);
+  document.addEventListener("offline", onoffline, false);
+
+  if(window.navigator.online){
+    $('body').addclass('online');
+
+  }
+
+  else{
+    console.log('window navigator offline');
+  }
+}
 
 /*
  * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html
@@ -9,6 +29,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
  */
 $( document ).on( "pageinit", "#map", function() {
     var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
+    console.log("map starting")
     if ( navigator.geolocation ) {
         function success(pos) {
             // Location found, show map with these coordinates
@@ -54,27 +75,6 @@ $(document).ready(function (e) {
 
   innit()
 });
-
-function onDeviceReady(){
-  console.log("device ready");
-
-
-  innit()
-}
-
-function innit() {
-  document.addEventListener("online", ononline, false);
-  document.addEventListener("offline", onoffline, false);
-
-  if(window.navigator.online){
-    $('body').addclass('online');
-
-  }
-
-  else{
-    console.log('window navigator offline');
-  }
-}
 
 function onoffline() {
   $('body').removeClass('online');

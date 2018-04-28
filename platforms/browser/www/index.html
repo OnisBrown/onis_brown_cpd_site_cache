@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Grand Discovery</title>
-  <meta name="viewport" content="width=device-width, intitial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, intitial-scale=1">
+  <!-- Apple stuff -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
   <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
-  <link rel="stylesheet" href="css/custom.css" />
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+
   <script type="text/javascript" src="cordova.js"></script>
-  <script src="cordova.js"></script>
-  <script src="js/main.js"></script>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+
 </head>
 
 <body>
@@ -27,10 +28,6 @@
  				</ul>
  			</div>
  	</div>
-  <div id="offline" class="fixed">
-    <h1> Hold!</h1>
-    <p> Offline</p>
-  </div>
  	<div  data="main" class="ui-content">
  		<h2>Boom!</h2>
  		<p>homepage</p>
@@ -45,16 +42,12 @@
  		<h1>Profile</h1>
  			<div data-role="navbar" class="ui-listview-inset">
  				<ul>
-          <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
-          <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="ui-icon-plus">profile</a></li>
-          <li><a href="#map" data-transition="pop" data-icon="star" class="ui-icon-star">map</a></li>
+          <li><a href="#home" data-transition="none" data-icon="home" class="ui-icon-home">Home</a></li>
+          <li><a href="#playerProfile" data-transition="none" data-icon="plus" class="ui-icon-plus">profile</a></li>
+          <li><a href="#map" data-transition="none" data-icon="star" class="ui-icon-star">map</a></li>
  				</ul>
  			</div>
  	</div>
-  <div id="offline" class="fixed">
-    <h1> Hold!</h1>
-    <p> Offline</p>
-  </div>
  	<div role="main" class="ui-content">
  		<h2>Boom!</h2>
  		<p>first page</p>
@@ -75,17 +68,10 @@
  				</ul>
  			</div>
  	</div>
-
   <div role="main" class="ui-content" id="map-canvas">
       <!-- map loads here... -->
   </div>
   <div data-role="footer">
-
-  <div id="offline" class="fixed">
-    <h1> Hold!</h1>
-    <p> Offline</p>
-  </div>
-
     <h3>Page Footer</h3>
   </div>
 </div>

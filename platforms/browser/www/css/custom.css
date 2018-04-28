@@ -26,11 +26,12 @@ display: block;
 }
 
 
-#map, #map-canvas { width: 100%; height: 100%; padding: 0; }
+#map  { width: 100%; height: 100%; padding: 0; }
+ #map-canvas { width: 100%; height: 100%; padding: 0; }
 
 .graph{
 	width: 100%;
-	height: 80vh;
+	height: 100%;
 	display: block;
 	overflow: hidden;
 	    background-color: #363646;

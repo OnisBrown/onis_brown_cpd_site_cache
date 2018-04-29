@@ -17,8 +17,6 @@
       This allows your app to load assets from all *.phongap.com domains
     -->
 	<access origin="*" />
-  <allow-navigation href="http://*/*" />
-  <allow-intent href="https://*/*" />
 	 <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -165,9 +163,13 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
+        <allow-navigation href="http://*/*" />
+        <allow-intent href="https://*/*" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
+        <allow-navigation href="http://*/*" />
+        <allow-intent href="https://*/*" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
 	</platform>

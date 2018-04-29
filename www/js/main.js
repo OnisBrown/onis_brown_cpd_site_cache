@@ -23,13 +23,24 @@ function innit() {
   }
 }
 
-/*
- * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html
- * Geolocation documentation: http://dev.w3.org/geo/api/spec-source.html
- */
-
 $(document).ready(function (e) {
   console.log("app ready");
+
+  function showView(currentView) {
+    $('.view').hide();
+    $(currentView).show();
+  }
+
+  $('a').click("touchstart", function (e) {
+    e.preventDefault();
+    var currentView = $(this).attr('href');
+    showView(currentView);
+  });
+
+  innit()
+});
+
+function map_callback() {
   var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
   console.log("map starting")
 
@@ -41,6 +52,7 @@ $(document).ready(function (e) {
 
       function fail(error) {
           drawMap(defaultLatLng);  // Failed to find location, show default map
+          console.log(error)
       }
       // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
       navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
@@ -63,20 +75,7 @@ $(document).ready(function (e) {
       });
       console.log("map ready")
   }
-
-  function showView(currentView) {
-    $('.view').hide();
-    $(currentView).show();
-  }
-
-  $('a').click("touchstart", function (e) {
-    e.preventDefault();
-    var currentView = $(this).attr('href');
-    showView(currentView);
-  });
-
-  innit()
-});
+}
 
 function onoffline() {
   $('body').removeClass('online');

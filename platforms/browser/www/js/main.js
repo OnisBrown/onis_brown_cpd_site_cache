@@ -62,7 +62,7 @@ function map_callback() {
 
   function drawMap(latlng) {
       var myOptions = {
-          zoom: 10,
+          zoom: 50,
           center: latlng,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       };
@@ -71,7 +71,6 @@ function map_callback() {
       var marker = new google.maps.Marker({
           position: latlng,
           map: map,
-          title: "Greetings!"
       });
       console.log("map ready")
   }

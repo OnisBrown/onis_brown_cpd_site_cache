@@ -282,7 +282,6 @@ function map_callback() {
           ]
       }
       var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-      map.setMyLocationEnabled(true);
       // Add an overlay to the map of current lat/lng
       var marker = new google.maps.Marker({
           position: latlng,

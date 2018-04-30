@@ -19,7 +19,7 @@
 
 <div data-role="page" class="ui-page-theme-b view" id="home">
  	<div data-role="header">
- 			<div data-role="navbar" class="ui-listview-inset">
+ 			<div data-role="navbar" class="ui-listview-inset" id="nav">
  				<ul>
           <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">home</a></li>
           <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="ui-icon-plus">profile</a></li>
@@ -38,7 +38,7 @@
 <div data-role="page" class="ui-page-theme-b view hide" id="playerProfile">
  	<div data-role="header">
  		<h1>Profile</h1>
- 			<div data-role="navbar" class="ui-listview-inset">
+ 			<div data-role="navbar" class="ui-listview-inset" id="nav">
  				<ul>
           <li><a href="#home" data-transition="none" data-icon="home" class="ui-icon-home">Home</a></li>
           <li><a href="#playerProfile" data-transition="none" data-icon="plus" class="ui-icon-plus">profile</a></li>
@@ -57,7 +57,7 @@
 <div data-role="page" class="ui-page-theme-b view hide" id="map">
  	<div data-role="header">
  		<h1>Map</h1>
- 			<div data-role="navbar" class="ui-listview-inset" id="navbar">
+ 			<div data-role="navbar" class="ui-listview-inset" id="nav">
  				<ul>
           <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
           <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="ui-icon-plus">profile</a></li>
@@ -76,6 +76,6 @@
 <script src="js/jqm_defaults.js "></script>
 <script type="text/javascript" src="js/main.js "></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?
-key=AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ&callback=map_callback"></script>
+key=AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ&callback=map_callback" async defer></script>
 </body>
 </html>

@@ -67,7 +67,6 @@
 	<plugin name="cordova-plugin-device-orientation" />
 	<plugin name="cordova-plugin-network-information" />
   <plugin name="phonegap-plugin-push" />
-
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins
 	THE BELOW IS AN EXAMPLE OF EXTRA SETTINGS FOR IOS1O SECURITY -->

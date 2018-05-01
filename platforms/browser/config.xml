@@ -13,7 +13,6 @@
     <author email="Onis.brown@hotmail.co.uk" href="website">
         Onis Brown
     </author>
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <icon src="icon.png" />
     <splash src="splash.png" />
     <icon platform="android" qualifier="ldpi" src="assets/icons/android/icon-36-ldpi.png" />

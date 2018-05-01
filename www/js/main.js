@@ -31,17 +31,13 @@ $(document).ready(function (e) {
     $(currentView).show();
   }
 
-  $('a').click("touchstart", function (e) {
+  $('.menuItem').click("touchstart", function (e) {
     e.preventDefault();
     var currentView = $(this).attr('href');
     showView(currentView);
   });
 
   innit();
-  while(navigator.onLine){
-    map_callback();
-    console.log("calling...")
-  }
 });
 
 function map_callback() {
@@ -74,7 +70,8 @@ function map_callback() {
           mapTypeControl: false,
           compass: true,
           tilt: 45,
-          gestureHandling: 'greedy',
+          fullscreenControl: false,
+          gestureHandling: 'none',
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles: [ //style options for the map
             {
@@ -288,8 +285,18 @@ function map_callback() {
          map: map,
       });
       console.log("map ready")
-      map.setCenter(initialLocation);
+      map.setCenter(latlng);
   }
+}
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
 
 function onoffline() {

@@ -18,15 +18,17 @@
 <body>
 
 <div data-role="page" class="ui-page-theme-b view" id="home">
- 	<div data-role="header">
- 			<div data-role="navbar" class="ui-listview-inset" id="nav">
- 				<ul>
-          <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">home</a></li>
-          <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="ui-icon-plus">profile</a></li>
-          <li><a href="#map" data-transition="pop" data-icon="star" class="ui-icon-star">3</a></li>
- 				</ul>
- 			</div>
- 	</div>
+  <div data-role="header">
+    <span onclick="openNav()">open</span>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
+    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
+    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
+  </div>
+
   <div data="main" class="ui-content" id="map-canvas">
         <p>map loading...</p>
         <!-- map loads here... -->
@@ -37,35 +39,30 @@
 
 <div data-role="page" class="ui-page-theme-b view hide" id="playerProfile">
  	<div data-role="header">
- 		<h1>Profile</h1>
- 			<div data-role="navbar" class="ui-listview-inset" id="nav">
- 				<ul>
-          <li><a href="#home" data-transition="none" data-icon="home" class="ui-icon-home">Home</a></li>
-          <li><a href="#playerProfile" data-transition="none" data-icon="plus" class="ui-icon-plus">profile</a></li>
-          <li><a href="#map" data-transition="none" data-icon="star" class="ui-icon-star">map</a></li>
- 				</ul>
- 			</div>
+    <span onclick="openNav()">open</span>
  	</div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
+    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
+    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
+  </div>
  	<div role="main" class="ui-content">
- 		<h2>Boom!</h2>
- 		<p>first page</p>
  	</div>
   <div data-role="footer">
   </div>
 </div>
 
-<div data-role="page" class="ui-page-theme-b view hide" id="map">
- 	<div data-role="header">
- 		<h1>Map</h1>
- 			<div data-role="navbar" class="ui-listview-inset" id="nav">
- 				<ul>
-          <li><a href="#home" data-transition="pop" data-icon="home" class="ui-icon-home">Home</a></li>
-          <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="ui-icon-plus">profile</a></li>
-          <li><a href="#map" data-transition="pop" data-icon="star" class="ui-icon-star">map</a></li>
- 				</ul>
- 			</div>
+<div data-role="page" class="ui-page-theme-b view hide" id="treasureHunts">
+  <div data-role="header">
+    <span onclick="openNav()">open</span>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
+    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
+    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
+  <div role="main" class="ui-content">
  	</div>
-
   <div data-role="footer">
   </div>
 </div>

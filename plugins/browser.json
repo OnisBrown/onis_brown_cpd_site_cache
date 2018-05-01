@@ -42,6 +42,15 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.adigitalengagement.locationtracker"
+        },
+        "cordova-plugin-crypt-file": {
+            "PACKAGE_NAME": "com.adigitalengagement.locationtracker"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.adigitalengagement.locationtracker"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.adigitalengagement.locationtracker"
         }
     },
     "dependent_plugins": {

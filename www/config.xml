@@ -6,9 +6,9 @@
     version     = "1.5.0" >
 
     <!-- versionCode is optional and Android only -->
-    <name>Onis Brown CPD APP</name>
+    <name>Grand Discovery</name>
     <description>
-        cross platform development app.
+        cross platform development app. A geocaching inspired community app.
     </description>
     <author href="website" email="Onis.brown@hotmail.co.uk">
         Onis Brown
@@ -29,22 +29,22 @@
     <!-- Customize your app and platform with the preference element. -->
     <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
-    <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
+    <preference name="fullscreen"                 value="false" />           <!-- all: hides the status bar at the top of the screen -->
+    <preference name="webviewbounce"              value="false" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
     <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
-    <preference name="stay-in-webview"            value="true" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
+    <preference name="stay-in-webview"            value="false" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
     <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
-    <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
-    <preference name="exit-on-suspend"            value="true" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
+    <preference name="detect-data-types"          value="false" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
+    <preference name="exit-on-suspend"            value="false" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
     <preference name="show-splash-screen-spinner" value="true" />           <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
     <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
-	<preference name="splash-screen-delay" 		  value="5000" />
-    <!--
-        Define a specific version of PhoneGap to build into your app.
-        <preference name="phonegap-version"       value="3.5.0" />
-    -->
+	  <preference name="splash-screen-delay" 		  value="5000" />
+    <preference name="StatusBarBackgroundColor" value="#40E0D0" />
+        <!--  Define a specific version of PhoneGap to build into your app. -->
+        <preference name="phonegap-version"       value="6.5.0" />
+
 
     <!-- Plugins -->
 
@@ -53,20 +53,40 @@
 
 	-->
 
-    <!-- Core plugins -->
+    <!-- Core plugins, locked the versions -->
 
-  <plugin name="cordova-plugin-console" />
-  <plugin name="cordova-plugin-camera" />
-  <plugin name="cordova-plugin-media-capture" />
-  <plugin name="cordova-plugin-dialogs" />
-  <plugin name="cordova-plugin-geolocation" />
-  <plugin name="cordova-plugin-inappbrowser" />
-  <plugin name="cordova-plugin-media" />
-  <plugin name="cordova-plugin-splashscreen" />
-  <plugin name="cordova-plugin-device" />
-	<plugin name="cordova-plugin-device-orientation" />
-	<plugin name="cordova-plugin-network-information" />
-  <plugin name="phonegap-plugin-push" />
+  <plugin name="cordova-plugin-camera" spec="4.0.3" />
+
+  <plugin name="cordova-plugin-console" spec="1.1.0" />
+
+  <plugin name="cordova-plugin-device" spec="2.0.2" />
+
+  <plugin name="cordova-plugin-device-orientation" spec="2.0.1" />
+
+  <plugin name="cordova-plugin-dialogs" spec="2.0.1" />
+
+  <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
+
+  <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
+
+  <plugin name="cordova-plugin-media" spec="5.0.2" />
+
+  <plugin name="cordova-plugin-media-capture" spec="3.0.2" />
+
+  <plugin name="cordova-plugin-network-information" spec="2.0.1" />
+
+  <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
+
+  <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
+
+  <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
+
+  <plugin name="cordova-plugin-vibration" spec="3.1.0"/>
+
+  <plugin name="phonegap-plugin-push" spec="2.2.2" />
+
+
+
     <!-- Third party plugins -->
 
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins
@@ -77,6 +97,11 @@
 -->
 
     <!-- Third party plugins -->
+  <plugin name="https://github.com/mapsplugin/cordova-plugin-googlemaps.git" source="git">
+    <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ" />
+    <variable name="API_KEY_FOR_IOS" value="AIzaSyDdzdAy8qssteLaYffzRjFCj7USBf0AsDc" />
+  </plugin>
+
 
 	<!--//these are generic not good enough for a live build - you will nedd to be os and device specific (android can use 9 slice png)-->
 	<icon src="icon.png" />

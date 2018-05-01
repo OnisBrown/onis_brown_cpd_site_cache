@@ -6,9 +6,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>Onis Brown CPD APP</name>
+    <name>Grand Discovery</name>
     <description>
-        cross platform development app.
+        cross platform development app. A geocaching inspired community app.
     </description>
     <author email="Onis.brown@hotmail.co.uk" href="website">
         Onis Brown
@@ -37,16 +37,18 @@
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
     <preference name="prerendered-icon" value="true" />
-    <preference name="stay-in-webview" value="true" />
+    <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
-    <preference name="detect-data-types" value="true" />
-    <preference name="exit-on-suspend" value="true" />
+    <preference name="detect-data-types" value="false" />
+    <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-installLocation" value="auto" />
     <preference name="splash-screen-delay" value="5000" />
+    <preference name="StatusBarBackgroundColor" value="#40E0D0" />
+    <preference name="phonegap-version" value="6.5.0" />
 </widget>

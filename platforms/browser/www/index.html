@@ -13,39 +13,40 @@
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
   <link rel="stylesheet" href="css/custom.css" />
   <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="googlemaps.js"></script>
 </head>
 
 <body>
 
-<div data-role="page" class="ui-page-theme-b view" id="home">
+<div data-role="page" class="view" id="innit">
   <div data-role="header">
-    <span onclick="openNav()">open</span>
+    <span onclick="openNav()">Compass list</span>
   </div>
 
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
-    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
-    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
+  <div id="mySidebar" class="sideBar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSide">&times;</a>
+    <a href="#innit" class="menuItem" id="clues">Clues</a>
+    <li><a href="#playerProfile" class="menuItem">profile</a></li>
+    <li><a href="#map" class="menuItem">Treasure hunts</a></li>
   </div>
 
   <div data="main" class="ui-content" id="map-canvas">
-        <p>map loading...</p>
+        <button onclick="map_callback()">open map</button>
         <!-- map loads here... -->
   </div>
   <div data-role="footer">
   </div>
 </div>
 
-<div data-role="page" class="ui-page-theme-b view hide" id="playerProfile">
+<div data-role="page" class="view hide" id="playerProfile">
  	<div data-role="header">
-    <span onclick="openNav()">open</span>
+    <span onclick="openNav()">Compass list</span>
  	</div>
-  <div id="mySidenav" class="sidenav">
+  <div id="mySidebar" class="sideBar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
-    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
-    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
+    <li><a href="#innit" class="menuItem">home</a></li>
+    <li><a href="#playerProfile" class="menuItem">profile</a></li>
+    <li><a href="#map" class="menuItem">Treasure hunts</a></li>
   </div>
  	<div role="main" class="ui-content">
  	</div>
@@ -53,15 +54,15 @@
   </div>
 </div>
 
-<div data-role="page" class="ui-page-theme-b view hide" id="treasureHunts">
+<div data-role="page" class="view hide" id="treasureHunts">
   <div data-role="header">
-    <span onclick="openNav()">open</span>
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <li><a href="#home" data-transition="pop" data-icon="home" class="menuItem">home</a></li>
-    <li><a href="#playerProfile" data-transition="pop" data-icon="plus" class="menuItem">profile</a></li>
-    <li><a href="#map" data-transition="pop" data-icon="star" class="menuItem">Treasure hunts</a></li>
-  <div role="main" class="ui-content">
+    <span onclick="openNav()">Compass list</span>
+    <div id="mySidebar" class="sideBar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <li><a href="#innit" class="menuItem">home</a></li>
+      <li><a href="#playerProfile" class="menuItem">profile</a></li>
+      <li><a href="#map" class="menuItem">Treasure hunts</a></li>
+    </div>
  	</div>
   <div data-role="footer">
   </div>
@@ -73,6 +74,6 @@
 <script src="js/jqm_defaults.js "></script>
 <script type="text/javascript" src="js/main.js "></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?
-key=AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ&callback=map_callback" async defer></script>
+key=AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ" async defer></script>
 </body>
 </html>

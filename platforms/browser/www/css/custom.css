@@ -4,7 +4,7 @@ html, body{
 	margin: 0;
 	padding:0;
 	height: 100%;
-	background-color: #87CEFF;
+	background-color: #f5deb3;
 }
 
 
@@ -19,19 +19,11 @@ html, body{
   display: none;
 }
 
-
-#home  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
-#map-canvas { width: 100%; height: 100%; padding: 0; position:fixed; top: 0; left: 0; transition: margin-left .5s;}
-
-#playerProfile  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
-
-#treasureHunts  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
-
-.sidenav {
+.sideBar {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 2; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     background-color: #111; /* Black*/
@@ -41,7 +33,7 @@ html, body{
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sideBar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -51,12 +43,12 @@ html, body{
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
+.sideBar a:hover {
     color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */
-.sidenav .closebtn {
+.sideBar .closebtn {
     position: absolute;
     top: 0;
     right: 10%;
@@ -71,3 +63,13 @@ html, body{
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
+
+#innit  { width: 100%; height: 100%; padding: 0; top: 0; left: 0; position: relative;}
+#innit > .header {width: 100%; height: 5%; position: absolute; top:15px; left: 0; z-index: 100;}
+#map-canvas { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
+#map-canvas > button { width: 10%; height: 10%; padding: 0; top: 50%; left: 50%;}
+
+#playerProfile  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
+
+#treasureHunts  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}

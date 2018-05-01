@@ -10,6 +10,10 @@ function onDeviceReady(){
 }
 
 function innit() {
+  if (cordova.platformId == 'android') { //set the colour of the status bar for android
+    StatusBar.backgroundColorByHexString("#40E0D0");
+  }
+
   document.addEventListener("online", ononline, false);
   document.addEventListener("offline", onoffline, false);
 
@@ -33,12 +37,15 @@ $(document).ready(function (e) {
 
   $('.menuItem').click("touchstart", function (e) {
     e.preventDefault();
+    hideSide();
     var currentView = $(this).attr('href');
     showView(currentView);
   });
 
-  innit();
 });
+
+
+
 
 function map_callback() {
   var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
@@ -290,13 +297,14 @@ function map_callback() {
 }
 
 /* Set the width of the side navigation to 250px */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+function showSide() {
+    document.getElementById("mySidebar").style.width = "250px";
+
 }
 
 /* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+function hideSide() {
+    document.getElementById("mySideBar").style.width = "0";
 }
 
 function onoffline() {

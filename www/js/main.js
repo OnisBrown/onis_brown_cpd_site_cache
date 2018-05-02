@@ -1,3 +1,16 @@
+var Relic_pointer= {
+	Cur_pos: {
+		lat: 0,
+		long: 0,
+	},
+
+	Goal_pos: {
+		lat: 0,
+		long: 0,
+	},
+
+	Goal_bearing: 0
+}
 
 // use when testing phone gap as will not get fired in browser
 $(document).ready(function (e) {
@@ -32,14 +45,41 @@ $('a').click("touchstart", function (e) {
   console.log("changing page");
   e.preventDefault();
   var currentView = $(this).attr('href');
+	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 3000, enableHighAccuracy:true, timeout: 6000});
+	watch_bearing = navigator.compass.watchHeading(compassSuccess, compassError, {frequency:500});
+
+	if (currentView != "#Tracking"){
+		navigator.geolocation.clearWatch(watch_pos)
+		navigator.compass.clearWatch(watch_bearing)
+	}
+
   showView(currentView);
 });
+
+function onSuccess(pos){
+	Relic_pointer.Cur_pos.lat = pos.coords.latitude
+	Relic_pointer.Cur_pos.long =	pos.coords.longitude
+	
+}
+
+function onError(){
+	console.log("couldn't get ")
+}
+
+function compassSuccess(heading){
+	Relic_pointer.Goal_bearing = heading.magneticHeading
+}
+
+function compassError(){
+
+}
 
 function map_callback() {
   var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
   console.log("map starting");
   if ( navigator.geolocation ) {
-      function success(pos) {
+
+			function success(pos) {
           // Location found, show map with these coordinates
           drawMap(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
       }
@@ -85,7 +125,7 @@ function map_callback() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#EDC9AF"
+                        "color": "#f7e7ca"
                     },
                     {
                         "lightness": -7
@@ -286,21 +326,11 @@ function map_callback() {
 
 /* Set the width of the side navigation to 250px */
 function showSide() {
-    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("mySideBar").style.width = "250px";
 
 }
 
 /* Set the width of the side navigation to 0 */
 function hideSide() {
     document.getElementById("mySideBar").style.width = "0";
-}
-
-function onoffline() {
-  $('body').removeClass('online');
-  $('body').addclass('offline');
-}
-
-function ononline() {
-  $('body').removeClass('offline');
-  $('body').addclass('online');
 }

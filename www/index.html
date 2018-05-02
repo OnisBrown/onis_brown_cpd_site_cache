@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
   <title>Grand Discovery</title>
   <meta name="viewport" content="width=device-width, height=device-height, intitial-scale=1">
   <!-- Apple stuff -->
@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
   <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
 
-
+	<link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet'>
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
   <link rel="stylesheet" href="css/custom.css" />
   <script type="text/javascript" src="cordova.js"></script>
@@ -20,12 +20,16 @@
 
 <div data-role="page" class="view" id="Profile">
   <div data-role="header" class="header">
-    <a href="#Profile"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
-    <a href="#Tracking"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
-    <a href="#Clues"><img src="assets/buttons/Clues.png" alt="clue"	title="select clue"></a>
+    <a href="#Tracking" id="tracker_button"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
+    <a href="#Clues" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="select clue"></a>
   </div>
-  <div role="main" class="ui-content">
-
+  <div role="main" id="Profile_layout">
+		<img src="assets/misc/scroll.png">
+		<div>
+	    <h1> Username </h1>
+			<p> 12 Relics found </p>
+			<p> 3 Relics in the world </p>
+		</div>
  	</div>
   <div data-role="footer">
   </div>
@@ -33,11 +37,14 @@
 
 <div data-role="page" class="view hide" id="Tracking">
   <div data-role="header" class="header">
-    <a href="#Profile"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
-    <a href="#Tracking"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
-    <a href="#Clues"><img src="assets/buttons/Clues.png" alt="clue"	title="select clue"></a>
+    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
+    <a href="#Clues" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="select clue"></a>
   </div>
-  <div data="main" id="map-canvas">
+	<div id= "Guide">
+		<img src="assets/misc/Arrow.png" alt="^^^" title="view profile">
+		<p> miles: 0 </p>	
+	</div>
+  <div id="map-canvas" class="hide">
         <button class="map_button" onclick="map_callback()">open map</button>
         <!-- map loads here... -->
   </div>
@@ -47,9 +54,8 @@
 
 <div data-role="page" class="view hide" id="Clues">
   <div data-role="header" class="header">
-    <a href="#Profile"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
+    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
     <a href="#Tracking"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
-    <a href="#Clues"><img src="assets/buttons/Clues.png" alt="clue"	title="select clue"></a>
   </div>
   <div role="main" class="ui-content">
 

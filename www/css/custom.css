@@ -1,34 +1,90 @@
 @charset "UTF-8";
 
+/* make sure body occupies entire screen */
 html, body{
 	margin: 0;
 	padding:0;
 	height: 100%;
 	background-color: #f5deb3;
+	font-family: 'Yellowtail';
 }
 
-
-.ui-content {
-    border-width: 0;
-    overflow: visible;
-    overflow-x: hidden;
-    padding: 0;
-}
-
+/* any page with the hide class is not displyed */
 .hide{
   display: none;
 }
 
-.header {width: 100%; height: 5%; position: absolute; top:5%; left: 0; z-index: 100;}
-.header > a {height:100%; margin-left: 15%; margin-right: 15%; display: inline-block;}
-
-a > img {height: 100%; border: 0;}
-#map-canvas { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
-#map-canvas > button { width: 5%; height: 5%; padding: 0; position: absolute; top: 45%; left: 45%;}
+/* make sure pages occupy entire screen */
 
 #Profile  { width: 100%; height: 100%; padding: 0; top: 0; left: 0; position: relative;}
 
+#Profile_layout {
+	max-width: 70%;
+	max-height: 70%;
+	padding: 0;
+	top: 15%;
+	left: 15%;
+	position: absolute;
+	user-select: none;
+}
 
-#Tracking  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;  position: relative;}
+#Profile_layout > img {height: 100%; width: 100%; z-index: -1; margin: auto;}
 
-#Clues  { width: 100%; height: 100%; padding: 0; top: 0; left: 0;  position: relative;}
+#Profile_layout > div {
+	top: 50%;
+	left: 50%; position: absolute;
+	transform: translate(-50%, -50%) skewY(6deg);
+	}
+
+#Profile_layout > div > h1 {
+	font-size: 5vh;
+	text-align: center;
+	z-index: 1;
+	position: relative;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+#Profile_layout > div > p {
+	margin-top: 25%;
+	right: 15%;
+	font-size: 2vh;
+	text-align: center;
+	z-index: 1;
+	position: relative;
+	user-select: none;
+}
+
+#Tracking  { width: 100%;
+	height: 100%;
+	padding: 0;
+	top: 0;
+	left: 0;
+	position: relative;
+}
+a > img {height: 100%; border: 0;}
+
+#map-canvas { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
+
+#map-canvas > button {
+	width: 5%;
+	height: 5%;
+	padding: 0;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+}
+
+#Clues  {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	top: 0;
+	left: 0;
+	position: relative;
+}
+
+/* Navigation header for app */
+.header {width: 100%; height: 5%; position: absolute; top:2%; left: 0; z-index: 100;}
+.header > a {height:100%; margin-right: 10%; margin-left: 3%; right: 0; display: inline-block;}

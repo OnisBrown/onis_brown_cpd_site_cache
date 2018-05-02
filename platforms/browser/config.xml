@@ -50,5 +50,5 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="splash-screen-delay" value="5000" />
     <preference name="StatusBarBackgroundColor" value="#40E0D0" />
-    <preference name="phonegap-version" value="6.5.0" />
+    <preference name="phonegap-version" value="cli-6.5.0" />
 </widget>

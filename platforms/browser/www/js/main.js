@@ -355,7 +355,7 @@ function dist(){
 						Math.cos(lat1)*Math.cos(lat2)*Math.sin(difflong/2)*
 						Math.sin(difflong/2);
 
-	var calc2 = 2*Math.atan2(Math.sqrt(calc), Math.sqrt(1=calc));
+	var calc2 = 2*Math.atan2(Math.sqrt(calc), Math.sqrt(1-calc));
 
 	var D = r * calc2;
 

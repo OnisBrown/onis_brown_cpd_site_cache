@@ -1,51 +1,39 @@
 
 // use when testing phone gap as will not get fired in browser
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady(){
-  console.log("device ready");
-
-
-  innit()
-}
-
-function innit() {
-  if (cordova.platformId == 'android') { //set the colour of the status bar for android
-    StatusBar.backgroundColorByHexString("#40E0D0");
-  }
-
-  document.addEventListener("online", ononline, false);
-  document.addEventListener("offline", onoffline, false);
-
-  if(window.navigator.online){
-    $('body').addclass('online');
-
-  }
-
-  else{
-    console.log('window navigator offline');
-  }
-}
-
 $(document).ready(function (e) {
-  console.log("app ready");
 
-  function showView(currentView) {
-    $('.view').hide();
-    $(currentView).show();
-  }
+  window.isphone = false;
+    if(document.URL.indexOf("http://") === -1
+        && document.URL.indexOf("https://") === -1) {
+        window.isphone = true;
+    }
 
-  $('.menuItem').click("touchstart", function (e) {
-    e.preventDefault();
-    hideSide();
-    var currentView = $(this).attr('href');
-    showView(currentView);
-  });
-
+    if( window.isphone ) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    } else {
+        onDeviceReady();
+    }
 });
 
 
+function onDeviceReady(){
+  if (cordova.platformId == 'android') { //set the colour of the status bar for android
+    StatusBar.backgroundColorByHexString("#40E0D0");
+  }
+  console.log("app ready");
+}
 
+function showView(currentView) {
+  $('.view').hide();
+  $(currentView).show();
+}
+
+$('a').click("touchstart", function (e) {
+  console.log("changing page");
+  e.preventDefault();
+  var currentView = $(this).attr('href');
+  showView(currentView);
+});
 
 function map_callback() {
   var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support

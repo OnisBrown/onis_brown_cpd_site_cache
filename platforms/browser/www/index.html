@@ -18,16 +18,11 @@
 
 <body>
 
-<div data-role="page" class="view" id="innit">
-  <div data-role="header">
-    <span onclick="openNav()">Compass list</span>
-  </div>
-
-  <div id="mySidebar" class="sideBar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeSide">&times;</a>
-    <a href="#innit" class="menuItem" id="clues">Clues</a>
-    <li><a href="#playerProfile" class="menuItem">profile</a></li>
-    <li><a href="#map" class="menuItem">Treasure hunts</a></li>
+<div data-role="page" class="view" id="Profile">
+  <div data-role="header" class="header">
+    <a href="#Profile" ><img src="assets/buttons/profile.png" alt="profile" class="menuItem" title="view profile"></a>
+    <a href="#Tracking" class="menuItem"><img src="assets/buttons/Tracking.png" alt="compass" class="menuItem"	title="view compass"></a>
+    <a href="#Clues" class="menuItem"><img src="assets/buttons/Clues.png" alt="clue" class="menuItem"	title="select clue"></a>
   </div>
 
   <div data="main" class="ui-content" id="map-canvas">
@@ -38,15 +33,11 @@
   </div>
 </div>
 
-<div data-role="page" class="view hide" id="playerProfile">
- 	<div data-role="header">
-    <span onclick="openNav()">Compass list</span>
- 	</div>
-  <div id="mySidebar" class="sideBar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <li><a href="#innit" class="menuItem">home</a></li>
-    <li><a href="#playerProfile" class="menuItem">profile</a></li>
-    <li><a href="#map" class="menuItem">Treasure hunts</a></li>
+<div data-role="page" class="view hide" id="Tracking">
+  <div data-role="header">
+    <a href="#Profile" ><img src="assets/buttons/profile.png" alt="profile" class="menuItem" title="view profile"></a>
+    <a href="#Tracking" class="menuItem"><img src="assets/buttons/Tracking.png" alt="compass" class="menuItem"	title="view compass"></a>
+    <a href="#Clues" class="menuItem"><img src="assets/buttons/Clues.png" alt="clue" class="menuItem"	title="select clue"></a>
   </div>
  	<div role="main" class="ui-content">
  	</div>
@@ -54,15 +45,13 @@
   </div>
 </div>
 
-<div data-role="page" class="view hide" id="treasureHunts">
+<div data-role="page" class="view hide" id="Clues">
   <div data-role="header">
-    <span onclick="openNav()">Compass list</span>
-    <div id="mySidebar" class="sideBar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <li><a href="#innit" class="menuItem">home</a></li>
-      <li><a href="#playerProfile" class="menuItem">profile</a></li>
-      <li><a href="#map" class="menuItem">Treasure hunts</a></li>
-    </div>
+    <a href="#Profile" ><img src="assets/buttons/profile.png" alt="profile" class="menuItem" title="view profile"></a>
+    <a href="#Tracking" class="menuItem"><img src="assets/buttons/Tracking.png" alt="compass" class="menuItem"	title="view compass"></a>
+    <a href="#Clues" class="menuItem"><img src="assets/buttons/Clues.png" alt="clue" class="menuItem"	title="select clue"></a>
+  </div>
+  <div role="main" class="ui-content">
  	</div>
   <div data-role="footer">
   </div>

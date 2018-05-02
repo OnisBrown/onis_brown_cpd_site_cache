@@ -43,7 +43,7 @@
 	  <preference name="splash-screen-delay" 		  value="5000" />
     <preference name="StatusBarBackgroundColor" value="#40E0D0" />
         <!--  Define a specific version of PhoneGap to build into your app. -->
-        <preference name="phonegap-version"       value="6.5.0" />
+        <preference name="phonegap-version"       value="cli-6.5.0" />
 
 
     <!-- Plugins -->

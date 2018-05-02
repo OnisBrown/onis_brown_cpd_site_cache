@@ -63,7 +63,15 @@ function onSuccess(pos){
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
 	Relic_pointer.Goal_bearing = pos.coords.heading;
 	D = dist();
-	document.getElementById("miles").innerHTML = D + " metres";
+	if (D < 1000){
+		document.getElementById("metric").innerHTML ="metres: " + D.toFixed(2);
+		document.getElementById("imperial").innerHTML ="feet: " + (D*3.28084).toFixed(2);
+	}
+	else{
+		D = D / 1000
+		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
+		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
+	}
 }
 
 function onError(){

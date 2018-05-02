@@ -97,7 +97,7 @@
 -->
 
     <!-- Third party plugins -->
-  <plugin name="https://github.com/mapsplugin/cordova-plugin-googlemaps.git" source="git">
+  <plugin name="https://github.com/mapsplugin/cordova-plugin-googlemaps.git#2b7d31b3cc8eb00b64f67032040c1fed6bc1ca41" source="git">
     <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAsUqzc7I2F2nq6pe7aPCELFKLG62TWwwQ" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDdzdAy8qssteLaYffzRjFCj7USBf0AsDc" />
   </plugin>

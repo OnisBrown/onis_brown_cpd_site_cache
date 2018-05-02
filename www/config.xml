@@ -139,26 +139,26 @@
 
 	<!-- iPhone and iPod touch -->
 <splash src="assets/splash/apple/IOS-iPhone3-portrait.png" platform="ios" width="320" height="480" />
-<splash src="assets/splash/apple/IOS-iPhone3-landscape.png" platform="ios" width="480" height="320" />
+<!-- <splash src="assets/splash/apple/IOS-iPhone3-landscape.png" platform="ios" width="480" height="320" /> -->
 <splash src="assets/splash/apple/IOS-iPhone4-portrait@2x.png" platform="ios" width="640" height="960" />
-<splash src="assets/splash/apple/IOS-iPhone4-landscape@2x.png" platform="ios" width="960" height="640" />
+<!-- <splash src="assets/splash/apple/IOS-iPhone4-landscape@2x.png" platform="ios" width="960" height="640" /> -->
 
 <!-- iPhone 5 / iPod Touch (5th Generation) -->
 <splash src="assets/splash/apple/IOS-iPhone5-portrait@2x.png" platform="ios" width="640" height="1136" />
-<splash src="assets/splash/apple/IOS-iPhone6-landscape@2x.png" platform="ios" width="1136" height="640" />
+<!-- <splash src="assets/splash/apple/IOS-iPhone6-landscape@2x.png" platform="ios" width="1136" height="640" /> -->
 
 <!-- iPhone 6 -->
 <splash src="assets/splash/apple/IOS-iPhone6-portrait@2x.png" platform="ios" width="750" height="1334" />
-<splash src="assets/splash/apple/IOS-iPhone6-landscape@2x.png" platform="ios" width="1334" height="750" />
-<!--<splash src="assets/splash/apple/iOS-Launch-Images_Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
-<splash src="assets/splash/apple/iOS-Launch-Images_Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />-->
+<!--<splash src="assets/splash/apple/IOS-iPhone6-landscape@2x.png" platform="ios" width="1334" height="750" />-->
+<splash src="assets/splash/apple/iOS-Launch-Images_Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+<!--<splash src="assets/splash/apple/iOS-Launch-Images_Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />-->
 
 <!-- iPad -->
 <splash src="assets/splash/apple/IOS-iPad-portrait.png" platform="ios" width="768" height="1024" />
 
 <!-- Retina iPad -->
 <splash src="assets/splash/apple/IOS-iPadAirMini-portrait@2x.png" platform="ios" width="1536" height="2048" />
-<splash src="assets/splash/apple/IOS-iPadAirMini-landscape@2x.png" platform="ios" width="2048" height="1536" />
+<!-- <splash src="assets/splash/apple/IOS-iPadAirMini-landscape@2x.png" platform="ios" width="2048" height="1536" /> -->
 
 </platform>
 <splash src="splash.png" />

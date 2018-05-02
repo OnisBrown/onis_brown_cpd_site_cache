@@ -10,15 +10,14 @@ var Relic_pointer= {
 	},
 
 	Goal_bearing: 0
-}
+};
 
 // use when testing phone gap as will not get fired in browser
 $(document).ready(function (e) {
 
   window.isphone = false;
-    if(document.URL.indexOf("http://") === -1
-        && document.URL.indexOf("https://") === -1) {
-        window.isphone = true;
+    if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1) {
+      window.isphone = true;
     }
 
     if( window.isphone ) {
@@ -49,17 +48,18 @@ $('a').click("touchstart", function (e) {
 	watch_bearing = navigator.compass.watchHeading(compassSuccess, compassError, {frequency:500});
 
 	if (currentView != "#Tracking"){
-		navigator.geolocation.clearWatch(watch_pos)
-		navigator.compass.clearWatch(watch_bearing)
+		navigator.geolocation.clearWatch(watch_pos);
+		navigator.compass.clearWatch(watch_bearing);
 	}
 
   showView(currentView);
 });
 
 function onSuccess(pos){
-	Relic_pointer.Cur_pos.lat = pos.coords.latitude
-	Relic_pointer.Cur_pos.long =	pos.coords.longitude
-	
+	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
+	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+	D = dist();
+	document.getElementById("miles").innerHTML = D + " miles";
 }
 
 function onError(){
@@ -67,7 +67,8 @@ function onError(){
 }
 
 function compassSuccess(heading){
-	Relic_pointer.Goal_bearing = heading.magneticHeading
+	Relic_pointer.Goal_bearing = heading.magneticHeading;
+
 }
 
 function compassError(){
@@ -333,4 +334,30 @@ function showSide() {
 /* Set the width of the side navigation to 0 */
 function hideSide() {
     document.getElementById("mySideBar").style.width = "0";
+}
+
+
+/* Distance calculations adapted from https://www.movable-type.co.uk/scripts/latlong.html#latlon-src  */
+
+function toRadians(num) {
+	return num * Math.PI / 180;
+};
+
+function dist(){
+	var r = 6371000; //metres
+	var lat1 = toRadians(Relic_pointer.Cur_pos.lat);
+	var long1 = toRadians(Relic_pointer.Cur_pos.long);
+	var lat2 = toRadians(Relic_pointer.Goal_pos.lat);
+	var long2 = toRadians(Relic_pointer.Goal_pos.long);
+	var difflat = lat2 - lat1;
+	var difflong = long2 - long1;
+	var calc = Math.sin(difflat/2)* Math.sin(difflat/2) +
+						Math.cos(lat1)*Math.cos(lat2)*Math.sin(difflong/2)*
+						Math.sin(difflong/2);
+
+	var calc2 = 2*Math.atan2(Math.sqrt(calc), Math.sqrt(1=calc));
+
+	var D = r * calc2;
+
+	return Math.round(D);
 }

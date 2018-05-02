@@ -1,17 +1,3 @@
-var Relic_pointer= {
-	Cur_pos: {
-		lat: 0,
-		long: 0,
-	},
-
-	Goal_pos: {
-		lat: 0,
-		long: 0,
-	},
-
-	Goal_bearing: 0
-};
-
 // use when testing phone gap as will not get fired in browser
 $(document).ready(function (e) {
 
@@ -35,44 +21,53 @@ function onDeviceReady(){
   console.log("app ready");
 }
 
+var Relic_pointer = {
+	Cur_pos: {
+		lat: 0,
+		long: 0,
+	},
+
+	Goal_pos: {
+		lat: 51.5074,
+		long: 0.1278,
+	},
+
+	Goal_bearing: 0
+};
+
 function showView(currentView) {
   $('.view').hide();
   $(currentView).show();
 }
 
 $('a').click("touchstart", function (e) {
-  console.log("changing page");
+
   e.preventDefault();
   var currentView = $(this).attr('href');
-	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 3000, enableHighAccuracy:true, timeout: 6000});
-	watch_bearing = navigator.compass.watchHeading(compassSuccess, compassError, {frequency:500});
+	console.log(currentView)
+
+	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 1000, enableHighAccuracy:true, timeout: 3000});
+	console.log("loaded position watch");
 
 	if (currentView != "#Tracking"){
 		navigator.geolocation.clearWatch(watch_pos);
-		navigator.compass.clearWatch(watch_bearing);
+		console.log("clearing position watch")
 	}
 
   showView(currentView);
+	console.log("changed page");
 });
 
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+	Relic_pointer.Goal_bearing = pos.coords.heading;
 	D = dist();
-	document.getElementById("miles").innerHTML = D + " miles";
+	document.getElementById("miles").innerHTML = D + " metres";
 }
 
 function onError(){
-	console.log("couldn't get ")
-}
-
-function compassSuccess(heading){
-	Relic_pointer.Goal_bearing = heading.magneticHeading;
-
-}
-
-function compassError(){
-
+	console.log("couldn't get position data");
 }
 
 function map_callback() {
@@ -91,7 +86,8 @@ function map_callback() {
       }
       // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
       navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
-  } else {
+  }
+	else {
       drawMap(defaultLatLng);  // No geolocation support, show default map
   }
 
@@ -313,14 +309,14 @@ function map_callback() {
                 ]
             }
           ]
-      }
+      };
       var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
       // Add an overlay to the map of current lat/lng
       var marker = new google.maps.Marker({
           position: latlng,
          map: map,
       });
-      console.log("map ready")
+      console.log("map ready");
       map.setCenter(latlng);
   }
 }
@@ -341,10 +337,10 @@ function hideSide() {
 
 function toRadians(num) {
 	return num * Math.PI / 180;
-};
+}
 
 function dist(){
-	var r = 6371000; //metres
+	var r = 6371e3; //metres
 	var lat1 = toRadians(Relic_pointer.Cur_pos.lat);
 	var long1 = toRadians(Relic_pointer.Cur_pos.long);
 	var lat2 = toRadians(Relic_pointer.Goal_pos.lat);

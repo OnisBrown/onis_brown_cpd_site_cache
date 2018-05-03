@@ -18,52 +18,75 @@
 
 <body>
 
-<div data-role="page" class="view" id="Profile">
-  <div data-role="header" class="header">
-    <a href="#Tracking" id="tracker_button"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
-    <a href="#History" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="look at old relics"></a>
-  </div>
-  <div role="main" id="Profile_layout">
-		<img src="assets/misc/scroll.png">
-		<div>
-	    <h1> Username </h1>
-			<p> 12 Relics found </p>
-			<p> 3 Relics in the world </p>
-		</div>
- 	</div>
-  <div data-role="footer">
-  </div>
-</div>
+	<div data-role="page" class="view" id="login">
 
-<div data-role="page" class="view hide" id="Tracking">
-  <div data-role="header" class="header">
-    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
-    <a href="#History" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="look at old relics"></a>
-  </div>
-	<div id= "Guide">
-		<img id="arrow" src="assets/misc/Arrow.png" alt="^^^" title="view profile">
-		<p id= "metric"> waiting for measurements... </p>
-		<p id="imperial"></p>
+	  <div role="main" id="login_layout">
+			<div>
+				<form onsubmit="login()">
+		    	 Username:<br>
+					 <input type="text" id="username" name="Username" maxlength="15" size="15"><br>
+					 <input type="submit" value="Login">
+				</form>
+			</div>
+	 	</div>
+	  <div data-role="footer">
+	  </div>
 	</div>
-  <div id="map-canvas" class="hide">
-        <button class="map_button" onclick="map_callback()">open map</button>
-        <!-- map loads here... -->
-  </div>
-  <div data-role="footer">
-  </div>
-</div>
 
-<div data-role="page" class="view hide" id="History">
-  <div data-role="header" class="header">
-    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
-    <a href="#Tracking"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
-  </div>
-  <div role="main" class="ui-content">
+	<div data-role="page" class="view hide" id="Profile">
+	  <div data-role="header" class="header">
+	    <a href="#Tracking" id="tracker_button"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
+	    <a href="#History" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="look at old relics"></a>
+	  </div>
+	  <div role="main" id="Profile_layout">
+			<img src="assets/misc/scroll.png">
+			<div>
+		    <h1 id="Prof_name"> Username </h1>
+				<p id="Prof_count"> 12 Relics found </p>
+				<p id="world_count"> 3 Relics in the world </p>
+			</div>
+	 	</div>
+	  <div data-role="footer">
+	  </div>
+	</div>
 
- 	</div>
-  <div data-role="footer">
-  </div>
-</div>
+	<div data-role="page" class="view hide" id="Tracking">
+	  <div data-role="header" class="header">
+	    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
+	    <a href="#History" id="clue_button"><img src="assets/buttons/Clues.png" alt="Past relics"	title="look at old relics"></a>
+	  </div>
+		<div id= "Guide">
+			<img id="arrow" src="assets/misc/Arrow.png" alt="^^^" title="view profile">
+			<p id= "metric"> waiting for measurements... </p>
+			<p id="imperial"></p>
+		</div>
+		<div id="mySideBar" class="mapBar">
+		  <div id="map-canvas" class="map">
+					<p> Map loading..</p>
+	        <!-- map loads here... -->
+	  	</div>
+			<p class="closebtn" onclick="hideSide()">&times;</p>
+		</div>
+		<p id="map_button" onclick="showSide()"> &#9776; map</p>
+		<div class="pointer_menu">
+				<h1> &#9759; Choose a relic &#9759;</h1>
+				<p id="list 1" onclick="changerelic()">| &#9818; Queens Jewels |</p>
+				<p id="list 2" onlclcik="changerelic()">| &#9884; Cathedral |</p>
+				<p id="list 2" onlclcik="changerelic()">|  &#9818; MarC |</p>
+	  </div>
+	</div>
+
+	<div data-role="page" class="view hide" id="History">
+	  <div data-role="header" class="header">
+	    <a href="#Profile" id="profile_button"><img src="assets/buttons/profile.png" alt="profile" title="view profile"></a>
+	    <a href="#Tracking"><img src="assets/buttons/Tracking.png" alt="compass"	title="view compass"></a>
+	  </div>
+	  <div role="main" class="ui-content">
+
+	 	</div>
+	  <div data-role="footer">
+	  </div>
+	</div>
 
 
 <script type="text/javascript" src="js/jquery-2.2.2.min.js "></script>

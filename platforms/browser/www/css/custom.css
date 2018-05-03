@@ -16,6 +16,24 @@ html, body{
 
 /* make sure pages occupy entire screen */
 
+#login  {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	top: 0;
+	left: 0;
+	position: relative;
+}
+
+#login_layout{
+	height: 20%;
+	width:20%;
+	left: 40%;
+	top: 40%;
+	position: absolute;
+	text-align: center;
+}
+
 #Profile  {
 	width: 100%;
 	height: 100%;
@@ -95,15 +113,38 @@ html, body{
 	position: relative;
 }
 
+.mapBar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+		background-color: #f5deb3;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.mapBar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    font-size: 5vh;
+    margin-left: 10%;
+		z-index: 20;
+}
+
 #map-canvas { width: 100%; height: 100%; padding: 0; top: 0; left: 0;}
 
-#map-canvas > button {
+#map_button{
 	width: 5%;
 	height: 5%;
 	padding: 0;
 	position: absolute;
-	top: 45%;
-	left: 45%;
+	top: 50%;
+	left: 0;
+	display: none;
 }
 
 #History {
@@ -119,3 +160,24 @@ html, body{
 .header {width: 100%; height: 5%; position: absolute; top:2%; left: 0; z-index: 100;}
 .header > a {height:100%; margin-right: 10%; margin-left: 3%; right: 0; display: inline-block;}
 a > img {height: 100%; border: 0;}
+
+/* footer */
+.pointer_menu {
+	bottom: 1%;
+	position: absolute;
+	height: 5%;
+	width: 100%;
+	text-align: center;
+}
+
+.pointer_menu > h1 {
+	font-size: 3vh;
+}
+
+.pointer_menu > p {
+	font-size: 3vh;
+	display: inline-block;
+	margin-left: 1vw;
+	text-align: center;
+	position: relative;
+}

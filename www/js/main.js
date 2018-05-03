@@ -19,6 +19,7 @@ function onDeviceReady(){
     StatusBar.backgroundColorByHexString("#40E0D0");
   }
   console.log("app ready");
+	init();
 }
 
 //relic object
@@ -27,16 +28,77 @@ var Relic_pointer = {
 		lat: 0,
 		long: 0,
 	},
-
 	Goal_pos: {
-		lat: 51.5074,
-		long: 0.1278,
+		lat: 0,
+		long: 0,
 	},
 };
+
+var user = {
+	name: "",
+	relics_found: [],
+}
+
+var relic_list = [];
+
+var storage = window.localStorage;
+
+function relic(name, location, text){
+	this.name = name;
+	this.location = location;
+	this.text = text;
+}
+
+function init(){ // populate relic list with default relics
+	var London_text = "Actually fake"
+	var london_loc = {
+		lat: 51.5074,
+		long: 0.1278,
+	};
+	var london = new relic("Crown Jewels", london_loc , London_text);
+	relic_list.push(london);
+
+	var cathedral_text = "Cathedral stuff"
+	var cathedral_loc = {
+		lat: 53.2343,
+		long: 0.1278,
+	};
+	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
+	relic_list.push(cathedral);
+
+	var marc_text = "Marc is one of the universities treasures"
+	var marc_loc = {
+		lat: 53.2279,
+		long: 0.5502,
+	};
+	var marc = new relic("M4RC", marc_loc , marc_text);
+	relic_list.push(marc);
+}
 
 function showView(currentView) {
   $('.view').hide();
   $(currentView).show();
+	console.log("changed page");
+}
+
+$('form').submit(function (evt) {
+   evt.preventDefault(); //prevents the form from putting the app at start screen
+});
+
+
+function login(){
+	var name = document.getElementById('username').value;
+
+	if (localStorage.getItem('username') === null) { //user doesn't exist yet create new user
+		user.name = name;
+		user.relics_found = [];
+		storage.setItem(name, JSON.stringify(user));
+	}
+
+	user = JSON.parse(storage.getItem(name));
+	document.getElementById("Prof_name").innerHTML = user.name;
+	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
+	showView("#Profile");
 }
 
 $('a').click("touchstart", function (e) {
@@ -52,15 +114,22 @@ $('a').click("touchstart", function (e) {
 	}
 
   showView(currentView);
-	console.log("changed page");
+
 });
 
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
-
+	document.getElementById("map_button").style.display = "none";
 
 	D = dist();
+
+	if(D < 200){
+		document.getElementById("arrow").style.display = "block";
+		if(D < 5){
+			
+		}
+	}
 	if (D < 1000){
 		document.getElementById("metric").innerHTML ="metres: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="feet: " + (D*3.28084).toFixed(2);
@@ -73,7 +142,7 @@ function onSuccess(pos){
 	console.log("C: " + pos.coords.heading);
 	B = direction();
 	console.log("B: " + B);
-	P = B-pos.coords.heading;
+	P = B-pos.coords.heading; //find angle to turn to relative to user.
 	console.log("P: " + P);
 	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
 	console.log('position changed');
@@ -327,17 +396,23 @@ function map_callback() {
       // Add an overlay to the map of current lat/lng
       var marker = new google.maps.Marker({
           position: latlng,
-         map: map,
+         	map: map,
       });
       console.log("map ready");
-      map.setCenter(latlng);
+      map.setCenter( new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long));
   }
+}
+
+function found(item){
+	user.relics_found.push(item);
+	storage.setItem(user.name, JSON.stringify(user));
+	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
 }
 
 /* Set the width of the side navigation to 250px */
 function showSide() {
-    document.getElementById("mySideBar").style.width = "250px";
-
+    document.getElementById("mySideBar").style.width = "100%";
+		map_callback();
 }
 
 /* Set the width of the side navigation to 0 */

@@ -130,8 +130,8 @@ function onSuccess(pos){
 
 	D = dist();
 
-	if(D < 500){
-		document.getElementById("arrow").style.display = "block";
+	if(D < 400){
+		document.getElementById("map_button").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
 		}
@@ -401,12 +401,6 @@ function map_callback() {
       console.log("map ready");
       map.setCenter( new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long));
   }
-}
-
-function changerelic(){
-	console.log('trying to change pointer');
- 	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer');
 }
 
 $('.pointer_button').click("touchstart", function (e) {

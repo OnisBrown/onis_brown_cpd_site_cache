@@ -125,12 +125,13 @@ $('a').click("touchstart", function (e) {
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+  console.log(pos.coords.latitude + " " + pos.coords.longitude);
 	document.getElementById("map_button").style.display = "none";
 
 	D = dist();
 
 	if(D < 500){
-		document.getElementById("arrow").style.display = "block";
+		document.getElementById("map_button").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
 		}
@@ -402,12 +403,6 @@ function map_callback() {
   }
 }
 
-function changerelic(){
-	console.log('trying to change pointer');
- 	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer');
-}
-
 $('.pointer_button').click("touchstart", function (e) {
 	console.log('trying to change pointer');
 	var id;
@@ -421,8 +416,9 @@ $('.pointer_button').click("touchstart", function (e) {
 	else if (name == 'london'){
 		id = 0;
 	}
-	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer to ' + name);
+	Relic_pointer.Goal_pos.lat = relic_list[id].location.lat;
+  Relic_pointer.Goal_pos.long = relic_list[id].location.long;
+  console.log('changing pointer to ' + name);
 });
 
 function found(item){

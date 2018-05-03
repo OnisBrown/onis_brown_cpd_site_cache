@@ -422,8 +422,9 @@ $('.pointer_button').click("touchstart", function (e) {
 	else if (name == 'london'){
 		id = 0;
 	}
-	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer to ' + name);
+	Relic_pointer.Goal_pos.lat = relic_list[id].location.lat;
+  Relic_pointer.Goal_pos.long = relic_list[id].location.long;
+  console.log('changing pointer to ' + name);
 });
 
 function found(item){

@@ -18,9 +18,15 @@ function onDeviceReady(){
   if (cordova.platformId == 'android') { //set the colour of the status bar for android
     StatusBar.backgroundColorByHexString("#40E0D0");
   }
+  window.addEventListener("compassneedscalibration",function(event) {
+    // ask user to wave device in a figure-eight motion
+       event.preventDefault();
+  }, true);
   console.log("app ready");
 	init();
 }
+
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
 //relic object
 var Relic_pointer = {
@@ -41,8 +47,19 @@ var user = {
 }
 
 var relic_list = [];
-
-var storage = window.localStorage;
+//setting up database
+var db;
+var databaseName = 'GDDB';
+var databaseVersion = 1;
+var openRequest = window.indexedDB.open(databaseName, databaseVersion);
+openRequest.onerror = function (event) {
+    console.log(openRequest.errorCode);
+};
+openRequest.onsuccess = function (event) {
+    // Database is open and initialized - we're good to proceed.
+    db = openRequest.result;
+    displayData();
+};
 
 function relic(name, location, text){
 	this.name = name;
@@ -110,7 +127,8 @@ $('a').click("touchstart", function (e) {
 
   e.preventDefault();
   var currentView = $(this).attr('href');
-	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 500, enableHighAccuracy:true, timeout: 1000});
+	watch_pos = navigator.geolocation.watchPosition(onLocSuccess, onError, {maximumAge: 500, enableHighAccuracy:true, timeout: 1000});
+  window.addEventListener("deviceorientation",onCompSuccess, true);
 	console.log("loaded position watch");
 
 	if (currentView != "#Tracking"){
@@ -122,7 +140,7 @@ $('a').click("touchstart", function (e) {
 
 });
 
-function onSuccess(pos){
+function onLocSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
   console.log(pos.coords.latitude + " " + pos.coords.longitude);
@@ -130,7 +148,7 @@ function onSuccess(pos){
 
 	D = dist();
 
-	if(D < 400){
+	if(D < 200){
 		document.getElementById("map_button").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
@@ -145,8 +163,12 @@ function onSuccess(pos){
 		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
 	}
-	B = direction();
-	P = B-pos.coords.heading; //find angle to turn to relative to user.
+
+}
+
+function onCompSuccess(event){
+  B = direction();
+	P = B-(360 — event.alpha); //find angle to turn to relative to user.
 	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
 }
 
@@ -421,8 +443,8 @@ $('.pointer_button').click("touchstart", function (e) {
   console.log('changing pointer to ' + name);
 });
 
-function found(item){
-	user.relics_found.push(item.name);
+function found(){
+	user.relics_found.push(Relic_pointer.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
 }

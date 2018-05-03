@@ -130,7 +130,7 @@ function onSuccess(pos){
 
 	D = dist();
 
-	if(D < 500){
+	if(D < 400){
 		document.getElementById("map_button").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);

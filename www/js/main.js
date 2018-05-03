@@ -43,7 +43,7 @@ $('a').click("touchstart", function (e) {
 
   e.preventDefault();
   var currentView = $(this).attr('href');
-	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 1000, enableHighAccuracy:true, timeout: 3000});
+	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 500, enableHighAccuracy:true, timeout: 1000});
 	console.log("loaded position watch");
 
 	if (currentView != "#Tracking"){
@@ -70,10 +70,13 @@ function onSuccess(pos){
 		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
 	}
-
+	console.log("C: " + pos.coords.heading);
 	B = direction();
-	P = Math.abs(B-pos.coords.heading);
-	$('#Guide').rotate(P);
+	console.log("B: " + B);
+	P = B-pos.coords.heading;
+	console.log("P: " + P);
+	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
+	console.log('position changed');
 }
 
 function onError(e){

@@ -125,9 +125,7 @@ $('a').click("touchstart", function (e) {
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
-  console.log(Relic_pointer.Cur_pos.lat + " " + Relic_pointer.Cur_pos.long);
-
-    break;)
+  console.log(pos.coords.latitude + " " + pos.coords.longitude);
 	document.getElementById("map_button").style.display = "none";
 
 	D = dist();

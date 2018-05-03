@@ -58,8 +58,9 @@ openRequest.onerror = function (event) {
 openRequest.onsuccess = function (event) {
     // Database is open and initialized - we're good to proceed.
     db = openRequest.result;
-    displayData();
 };
+
+var storage = window.localStorage;
 
 function relic(name, location, text){
 	this.name = name;
@@ -170,7 +171,7 @@ function onLocSuccess(pos){
 function onCompSuccess(event){
   B = direction();
 	P = B-(360 - event.alpha); //find angle to turn to relative to user.
-	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
+	document.getElementById("arrow").style.transform="rotate(" + P + "deg)";
 }
 
 function onError(e){

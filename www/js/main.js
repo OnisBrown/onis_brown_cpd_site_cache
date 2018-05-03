@@ -62,8 +62,8 @@ function init(){ // populate relic list with default relics
 
 	var cathedral_text = "Cathedral stuff"
 	var cathedral_loc = {
-		lat: 53.2311009,
-		long: -0.5553703,
+		lat: 53.2342871,
+		long: -0.53603,
 	};
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
@@ -71,8 +71,8 @@ function init(){ // populate relic list with default relics
 
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
-		lat: 53.2265905,
-		long: -0.5493556,
+		lat: 53.2270493,
+		long: -0.5476376,
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);
@@ -125,11 +125,14 @@ $('a').click("touchstart", function (e) {
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+  console.log(Relic_pointer.Cur_pos.lat + " " + Relic_pointer.Cur_pos.long);
+
+    break;)
 	document.getElementById("map_button").style.display = "none";
 
 	D = dist();
 
-	if(D < 200){
+	if(D < 500){
 		document.getElementById("arrow").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
@@ -178,8 +181,6 @@ function map_callback() {
       var myOptions = {
           zoom: 20,
           streetViewControl: false,
-          maxZoom: 20,
-          minZoom: 18,
           center: latlng,
           zoomControl: false,
           mapTypeControl: false,

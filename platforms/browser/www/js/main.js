@@ -54,16 +54,16 @@ function init(){ // populate relic list with default relics
 	console.log('init called')
 	var London_text = "Actually fake"
 	var london_loc = {
-		lat: 51.5074,
-		long: 0.1278,
+		lat: 51.5078726,
+		long: -0.0764334,
 	};
 	var london = new relic("Crown Jewels", london_loc , London_text);
 	relic_list.push(london);
 
 	var cathedral_text = "Cathedral stuff"
 	var cathedral_loc = {
-		lat: 53.2343,
-		long: 0.1278,
+		lat: 53.2342871,
+		long: -0.53603,
 	};
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
@@ -71,8 +71,8 @@ function init(){ // populate relic list with default relics
 
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
-		lat: 53.2279,
-		long: 0.5502,
+		lat: 53.2270493,
+		long: -0.5476376,
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);
@@ -129,7 +129,7 @@ function onSuccess(pos){
 
 	D = dist();
 
-	if(D < 200){
+	if(D < 500){
 		document.getElementById("arrow").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
@@ -178,8 +178,6 @@ function map_callback() {
       var myOptions = {
           zoom: 20,
           streetViewControl: false,
-          maxZoom: 20,
-          minZoom: 18,
           center: latlng,
           zoomControl: false,
           mapTypeControl: false,

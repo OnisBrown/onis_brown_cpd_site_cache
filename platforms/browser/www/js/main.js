@@ -24,6 +24,7 @@ function onDeviceReady(){
 
 //relic object
 var Relic_pointer = {
+	name: "",
 	Cur_pos: {
 		lat: 0,
 		long: 0,
@@ -126,8 +127,8 @@ function onSuccess(pos){
 
 	if(D < 200){
 		document.getElementById("arrow").style.display = "block";
-		if(D < 5){
-			
+		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
+			found(Relic_pointer);
 		}
 	}
 	if (D < 1000){
@@ -404,12 +405,12 @@ function map_callback() {
 }
 
 function found(item){
-	user.relics_found.push(item);
+	user.relics_found.push(item.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
 }
 
-/* Set the width of the side navigation to 250px */
+/* Set the width of the side navigation to 100% */
 function showSide() {
     document.getElementById("mySideBar").style.width = "100%";
 		map_callback();

@@ -21,6 +21,7 @@ function onDeviceReady(){
   console.log("app ready");
 }
 
+//relic object
 var Relic_pointer = {
 	Cur_pos: {
 		lat: 0,
@@ -31,8 +32,6 @@ var Relic_pointer = {
 		lat: 51.5074,
 		long: 0.1278,
 	},
-
-	Goal_bearing: 0
 };
 
 function showView(currentView) {
@@ -44,8 +43,6 @@ $('a').click("touchstart", function (e) {
 
   e.preventDefault();
   var currentView = $(this).attr('href');
-	console.log(currentView)
-
 	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 1000, enableHighAccuracy:true, timeout: 3000});
 	console.log("loaded position watch");
 
@@ -61,7 +58,8 @@ $('a').click("touchstart", function (e) {
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
-	Relic_pointer.Goal_bearing = pos.coords.heading;
+
+
 	D = dist();
 	if (D < 1000){
 		document.getElementById("metric").innerHTML ="metres: " + D.toFixed(2);
@@ -72,10 +70,14 @@ function onSuccess(pos){
 		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
 	}
+
+	B = direction();
+	P = Math.abs(B-pos.coords.heading);
+	$('#Guide').rotate(P);
 }
 
-function onError(){
-	console.log("couldn't get position data");
+function onError(e){
+	console.log(e);
 }
 
 function map_callback() {
@@ -345,6 +347,22 @@ function hideSide() {
 
 function toRadians(num) {
 	return num * Math.PI / 180;
+}
+
+function toDegrees(num) {
+	return num *  180 / Math.PI;
+}
+
+function direction(){
+	var lat1 = toRadians(Relic_pointer.Cur_pos.lat);
+	var long1 = toRadians(Relic_pointer.Cur_pos.long);
+	var lat2 = toRadians(Relic_pointer.Goal_pos.lat);
+	var long2 = toRadians(Relic_pointer.Goal_pos.long);
+	var difflong = long2 - long1;
+	var y = Math.sin(difflong)*Math.cos(lat2);
+	var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(difflong);
+	var B = toDegrees(Math.atan2(y, x));
+	return B
 }
 
 function dist(){

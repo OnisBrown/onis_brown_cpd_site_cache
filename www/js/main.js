@@ -169,7 +169,7 @@ function onLocSuccess(pos){
 
 function onCompSuccess(event){
   B = direction();
-	P = B-(360 — event.alpha); //find angle to turn to relative to user.
+	P = B-(360 - event.alpha); //find angle to turn to relative to user.
 	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
 }
 

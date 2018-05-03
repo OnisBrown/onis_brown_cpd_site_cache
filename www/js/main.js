@@ -133,6 +133,7 @@ $('a').click("touchstart", function (e) {
 
 	if (currentView != "#Tracking"){
 		navigator.geolocation.clearWatch(watch_pos);
+    window.removeEventListener("deviceorientation",onCompSuccess);
 		console.log("clearing position watch")
 	}
 

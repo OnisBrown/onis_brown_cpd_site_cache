@@ -54,16 +54,16 @@ function init(){ // populate relic list with default relics
 	console.log('init called')
 	var London_text = "Actually fake"
 	var london_loc = {
-		lat: 51.5074,
-		long: 0.1278,
+		lat: 51.5078726,
+		long: -0.0764334,
 	};
 	var london = new relic("Crown Jewels", london_loc , London_text);
 	relic_list.push(london);
 
 	var cathedral_text = "Cathedral stuff"
 	var cathedral_loc = {
-		lat: 53.2343,
-		long: 0.1278,
+		lat: 53.2311009,
+		long: -0.5553703,
 	};
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
@@ -71,8 +71,8 @@ function init(){ // populate relic list with default relics
 
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
-		lat: 53.2279,
-		long: 0.5502,
+		lat: 53.2265905,
+		long: -0.5493556,
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);

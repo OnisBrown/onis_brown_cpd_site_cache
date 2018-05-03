@@ -51,6 +51,7 @@ function relic(name, location, text){
 }
 
 function init(){ // populate relic list with default relics
+	console.log('init called')
 	var London_text = "Actually fake"
 	var london_loc = {
 		lat: 51.5074,
@@ -67,6 +68,7 @@ function init(){ // populate relic list with default relics
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
 
+
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
 		lat: 53.2279,
@@ -74,6 +76,8 @@ function init(){ // populate relic list with default relics
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);
+
+	document.getElementById("world_count").innerHTML = relic_list.length + " relics in the world";
 }
 
 function showView(currentView) {
@@ -140,13 +144,9 @@ function onSuccess(pos){
 		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
 	}
-	console.log("C: " + pos.coords.heading);
 	B = direction();
-	console.log("B: " + B);
 	P = B-pos.coords.heading; //find angle to turn to relative to user.
-	console.log("P: " + P);
 	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
-	console.log('position changed');
 }
 
 function onError(e){
@@ -403,6 +403,29 @@ function map_callback() {
       map.setCenter( new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long));
   }
 }
+
+function changerelic(){
+	console.log('trying to change pointer');
+ 	Relic_pointer.Goal_pos = relic_list[id].location;
+	console.log('changing pointer');
+}
+
+$('.pointer_button').click("touchstart", function (e) {
+	console.log('trying to change pointer');
+	var id;
+	var name = event.target.id;
+	if (name == 'uni'){
+		id = 2;
+	}
+	else if (name == 'cathedral'){
+		id = 1;
+	}
+	else if (name == 'london'){
+		id = 0;
+	}
+	Relic_pointer.Goal_pos = relic_list[id].location;
+	console.log('changing pointer to ' + name);
+});
 
 function found(item){
 	user.relics_found.push(item.name);

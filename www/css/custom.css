@@ -53,6 +53,7 @@ html, body{
 	top: 0;
 	font-size: 5vh;
 	z-index: 20;
+	text-align: center;
 }
 
 #helppar{
@@ -60,6 +61,7 @@ html, body{
 	top: 3vh;
 	font-size: 2vh;
 	z-index: 20;
+	text-align: center;
 }
 
 

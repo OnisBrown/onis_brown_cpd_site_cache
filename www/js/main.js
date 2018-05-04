@@ -460,7 +460,6 @@ function found(){
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
   navigator.vibrate(1000);
   navigator.notification.alert("You found " + Relic_pointer.name, Pop_history(), "Congrats",)
-
 }
 
 /* Set the width of the side navigation to 100% */

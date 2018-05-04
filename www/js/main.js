@@ -490,9 +490,9 @@ function Pop_history(){
       var ptt = document.createTextNode("Description: " + relic_list[is].text);
       pt.appendChild(ptt);
 
-      $("#list_history").appendChild(head);
-      $("#list_history").appendChild(pl);
-      $("#list_history").appendChild(pl);
+      $("#list_history").append(head);
+      $("#list_history").append(pl);
+      $("#list_history").append(pl);
     }
   }
 }

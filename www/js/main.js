@@ -102,7 +102,7 @@ $('form').submit(function (evt) {
 
 function login(){
 	var name = document.getElementById('username').value;
-
+  console.log(name)
 	if (localStorage.getItem(name) === null) { //user doesn't exist yet create new user
 		user.name = name;
 		user.relics_found = [];
@@ -459,6 +459,7 @@ $('.pointer_button').click("touchstart", function (e) {
 
 function found(){
 	user.relics_found.push(Relic_pointer.name);
+  storage.removeItem(user.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
 }

@@ -188,10 +188,20 @@ a > img {height: 100%; border: 0;}
 	font-size: 3vh;
 }
 
-.pointer_menu > p {
+.pointer_menu > button {
+	border: none;
+	background-color: #e2d622;
+	color: black;
+	transform: skew(-10deg);
+	border-radius: 10%;
 	font-size: 3vh;
 	display: inline-block;
 	margin-left: 1vw;
 	text-align: center;
 	position: relative;
+}
+
+#me {
+	background-color: #FF0000;
+	color: white;
 }

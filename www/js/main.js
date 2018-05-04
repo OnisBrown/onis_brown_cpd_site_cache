@@ -477,7 +477,7 @@ function Pop_history(){
   console.log(user.relics_found.length)
   for(i=0; i < user.relics_found.length; i++){
     var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
-
+    console.log(is);
     if(is > -1){
       var head = document.createElement("H2");
       head.appendChild(relic_list[is].name);

@@ -18,15 +18,9 @@ function onDeviceReady(){
   if (cordova.platformId == 'android') { //set the colour of the status bar for android
     StatusBar.backgroundColorByHexString("#40E0D0");
   }
-  window.addEventListener("compassneedscalibration",function(event) {
-    // ask user to wave device in a figure-eight motion
-       event.preventDefault();
-  }, true);
   console.log("app ready");
 	init();
 }
-
-var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
 //relic object
 var Relic_pointer = {
@@ -47,18 +41,6 @@ var user = {
 }
 
 var relic_list = [];
-//setting up database
-var db;
-var databaseName = 'GDDB';
-var databaseVersion = 1;
-var openRequest = window.indexedDB.open(databaseName, databaseVersion);
-openRequest.onerror = function (event) {
-    console.log(openRequest.errorCode);
-};
-openRequest.onsuccess = function (event) {
-    // Database is open and initialized - we're good to proceed.
-    db = openRequest.result;
-};
 
 var storage = window.localStorage;
 
@@ -69,12 +51,21 @@ function relic(name, location, text){
 }
 
 function init(){ // populate relic list with default relics
-	console.log('init called')
+  console.log('init called');
+
+  window.addEventListener("compassneedscalibration",function(event) {
+    // ask user to wave device in a figure-eight motion
+       console.log("called calibration")
+       event.preventDefault();
+  }, true);
+
+
 	var London_text = "Actually fake"
 	var london_loc = {
 		lat: 51.5078726,
 		long: -0.0764334,
 	};
+
 	var london = new relic("Crown Jewels", london_loc , London_text);
 	relic_list.push(london);
 
@@ -121,7 +112,23 @@ function login(){
 	user = JSON.parse(storage.getItem(name));
 	document.getElementById("Prof_name").innerHTML = user.name;
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
-	showView("#Profile");
+
+  for(i=0; i < user.relics_found.length; i++){
+    var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
+
+    if(is > -1){
+      var head = document.createElement("H1");
+      head.innerHTML = + relic_list[is].name
+      var pl = document.createTextNode("Position: " + relic_list[is].location);
+      var pt = document.createTextNode("Description: " + relic_list[is].text);
+      pl.appendChild(pt);
+      head.appendChild(pl);
+      $("#History > div").appendChild(head);
+    }
+
+  }
+
+  showView("#Profile");
 }
 
 $('a').click("touchstart", function (e) {
@@ -201,7 +208,7 @@ function map_callback() {
 
   function drawMap(latlng) {
       var myOptions = {
-          zoom: 20,
+          zoom: 19,
           streetViewControl: false,
           center: latlng,
           zoomControl: false,

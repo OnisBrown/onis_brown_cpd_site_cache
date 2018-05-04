@@ -51,19 +51,28 @@ function relic(name, location, text){
 }
 
 function init(){ // populate relic list with default relics
-	console.log('init called')
+  console.log('init called');
+
+  window.addEventListener("compassneedscalibration",function(event) {
+    // ask user to wave device in a figure-eight motion
+       console.log("called calibration")
+       event.preventDefault();
+  }, true);
+
+
 	var London_text = "Actually fake"
 	var london_loc = {
 		lat: 51.5078726,
 		long: -0.0764334,
 	};
+
 	var london = new relic("Crown Jewels", london_loc , London_text);
 	relic_list.push(london);
 
 	var cathedral_text = "Cathedral stuff"
 	var cathedral_loc = {
-		lat: 53.2311009,
-		long: -0.5553703,
+		lat: 53.2342871,
+		long: -0.53603,
 	};
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
@@ -71,8 +80,8 @@ function init(){ // populate relic list with default relics
 
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
-		lat: 53.2265905,
-		long: -0.5493556,
+		lat: 53.2270493,
+		long: -0.5476376,
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);
@@ -93,8 +102,8 @@ $('form').submit(function (evt) {
 
 function login(){
 	var name = document.getElementById('username').value;
-
-	if (localStorage.getItem('username') === null) { //user doesn't exist yet create new user
+  console.log(name)
+	if (localStorage.getItem(name) === null) { //user doesn't exist yet create new user
 		user.name = name;
 		user.relics_found = [];
 		storage.setItem(name, JSON.stringify(user));
@@ -103,18 +112,22 @@ function login(){
 	user = JSON.parse(storage.getItem(name));
 	document.getElementById("Prof_name").innerHTML = user.name;
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
-	showView("#Profile");
+  Pop_history();
+  showView("#Profile");
+
 }
 
 $('a').click("touchstart", function (e) {
 
   e.preventDefault();
   var currentView = $(this).attr('href');
-	watch_pos = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 500, enableHighAccuracy:true, timeout: 1000});
+	watch_pos = navigator.geolocation.watchPosition(onLocSuccess, onError, {maximumAge: 500, enableHighAccuracy:true, timeout: 1000});
+  window.addEventListener("deviceorientation",onCompSuccess, true);
 	console.log("loaded position watch");
 
 	if (currentView != "#Tracking"){
 		navigator.geolocation.clearWatch(watch_pos);
+    window.removeEventListener("deviceorientation",onCompSuccess);
 		console.log("clearing position watch")
 	}
 
@@ -122,15 +135,30 @@ $('a').click("touchstart", function (e) {
 
 });
 
-function onSuccess(pos){
+$('.Quit').click("touchstart", function (e) {
+  console.log("quitting")
+  showView("#login")
+});
+
+$('.help').click("touchstart", function (e) {
+  document.getElementById("tooltip").style.display = "block";
+});
+
+function hidetool(){
+  document.getElementById("tooltip").style.display = "none";
+}
+
+function onLocSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+  console.log(pos.coords.latitude + " " + pos.coords.longitude);
 	document.getElementById("map_button").style.display = "none";
 
 	D = dist();
 
 	if(D < 200){
-		document.getElementById("arrow").style.display = "block";
+		document.getElementById("map_button").style.display = "block";
+    is = user.relics_found.map(function(e) { return e.name; }).indexOf(Relic_pointer.name);
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
 		}
@@ -144,9 +172,13 @@ function onSuccess(pos){
 		document.getElementById("metric").innerHTML ="km: " + D.toFixed(2);
 		document.getElementById("imperial").innerHTML ="miles: " + (D/1.609344).toFixed(2);
 	}
-	B = direction();
-	P = B-pos.coords.heading; //find angle to turn to relative to user.
-	document.getElementById("arrow").style.transform="rotate(" + P + "deg)"
+
+}
+
+function onCompSuccess(event){
+  B = direction();
+	P = B-(360 - event.alpha); //find angle to turn to relative to user.
+	document.getElementById("arrow").style.transform="rotate(" + P + "deg)";
 }
 
 function onError(e){
@@ -176,10 +208,9 @@ function map_callback() {
 
   function drawMap(latlng) {
       var myOptions = {
-          zoom: 20,
+          zoom: 18,
+          center: new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long),
           streetViewControl: false,
-          maxZoom: 20,
-          minZoom: 18,
           center: latlng,
           zoomControl: false,
           mapTypeControl: false,
@@ -395,19 +426,13 @@ function map_callback() {
       };
       var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
       // Add an overlay to the map of current lat/lng
-      var marker = new google.maps.Marker({
+      var popup = new google.maps.Marker({
           position: latlng,
+          label: "U",
          	map: map,
       });
       console.log("map ready");
-      map.setCenter( new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long));
   }
-}
-
-function changerelic(){
-	console.log('trying to change pointer');
- 	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer');
 }
 
 $('.pointer_button').click("touchstart", function (e) {
@@ -423,14 +448,17 @@ $('.pointer_button').click("touchstart", function (e) {
 	else if (name == 'london'){
 		id = 0;
 	}
-	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer to ' + name);
+	Relic_pointer.Goal_pos.lat = relic_list[id].location.lat;
+  Relic_pointer.Goal_pos.long = relic_list[id].location.long;
+  console.log('changing pointer to ' + name);
 });
 
-function found(item){
-	user.relics_found.push(item.name);
+function found(){
+	user.relics_found.push(Relic_pointer.name);
+  storage.removeItem(user.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
+  Pop_history();
 }
 
 /* Set the width of the side navigation to 100% */
@@ -444,6 +472,30 @@ function hideSide() {
     document.getElementById("mySideBar").style.width = "0";
 }
 
+function Pop_history(){
+  console.log("changing history page")
+  console.log(user.relics_found.length)
+  for(i=0; i < user.relics_found.length; i++){
+    var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
+
+    if(is > -1){
+      var head = document.createElement("H2");
+      head.appendChild(relic_list[is].name);
+
+      var pl = document.createElement("P");
+      var plt = document.createTextNode("Position: " + relic_list[is].location);
+      pl.appendChild(plt);
+
+      var pt = document.createElement("P");
+      var ptt = document.createTextNode("Description: " + relic_list[is].text);
+      pt.appendChild(ptt);
+
+      $("#list_history").append(head);
+      $("#list_history").append(pl);
+      $("#list_history").append(pl);
+    }
+  }
+}
 
 /* Distance calculations adapted from https://www.movable-type.co.uk/scripts/latlong.html#latlon-src  */
 

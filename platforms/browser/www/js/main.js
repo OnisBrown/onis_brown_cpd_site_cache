@@ -54,16 +54,16 @@ function init(){ // populate relic list with default relics
 	console.log('init called')
 	var London_text = "Actually fake"
 	var london_loc = {
-		lat: 51.5074,
-		long: 0.1278,
+		lat: 51.5078726,
+		long: -0.0764334,
 	};
 	var london = new relic("Crown Jewels", london_loc , London_text);
 	relic_list.push(london);
 
 	var cathedral_text = "Cathedral stuff"
 	var cathedral_loc = {
-		lat: 53.2343,
-		long: 0.1278,
+		lat: 53.2342871,
+		long: -0.53603,
 	};
 	var cathedral = new relic("Holy Grail", cathedral_loc , cathedral_text);
 	relic_list.push(cathedral);
@@ -71,8 +71,8 @@ function init(){ // populate relic list with default relics
 
 	var marc_text = "Marc is one of the universities treasures"
 	var marc_loc = {
-		lat: 53.2279,
-		long: 0.5502,
+		lat: 53.2270493,
+		long: -0.5476376,
 	};
 	var marc = new relic("M4RC", marc_loc , marc_text);
 	relic_list.push(marc);
@@ -125,12 +125,13 @@ $('a').click("touchstart", function (e) {
 function onSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
 	Relic_pointer.Cur_pos.long =	pos.coords.longitude;
+  console.log(pos.coords.latitude + " " + pos.coords.longitude);
 	document.getElementById("map_button").style.display = "none";
 
 	D = dist();
 
-	if(D < 200){
-		document.getElementById("arrow").style.display = "block";
+	if(D < 400){
+		document.getElementById("map_button").style.display = "block";
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
 		}
@@ -178,8 +179,6 @@ function map_callback() {
       var myOptions = {
           zoom: 20,
           streetViewControl: false,
-          maxZoom: 20,
-          minZoom: 18,
           center: latlng,
           zoomControl: false,
           mapTypeControl: false,
@@ -404,12 +403,6 @@ function map_callback() {
   }
 }
 
-function changerelic(){
-	console.log('trying to change pointer');
- 	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer');
-}
-
 $('.pointer_button').click("touchstart", function (e) {
 	console.log('trying to change pointer');
 	var id;
@@ -423,8 +416,9 @@ $('.pointer_button').click("touchstart", function (e) {
 	else if (name == 'london'){
 		id = 0;
 	}
-	Relic_pointer.Goal_pos = relic_list[id].location;
-	console.log('changing pointer to ' + name);
+	Relic_pointer.Goal_pos.lat = relic_list[id].location.lat;
+  Relic_pointer.Goal_pos.long = relic_list[id].location.long;
+  console.log('changing pointer to ' + name);
 });
 
 function found(item){

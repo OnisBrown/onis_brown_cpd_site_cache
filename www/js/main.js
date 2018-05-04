@@ -117,13 +117,16 @@ function login(){
     var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
 
     if(is > -1){
-      var head = document.createElement("H1");
-      head.innerHTML = + relic_list[is].name
-      var pl = document.createTextNode("Position: " + relic_list[is].location);
-      var pt = document.createTextNode("Description: " + relic_list[is].text);
-      pl.appendChild(pt);
-      head.appendChild(pl);
+      var head = document.createElement("H2");
+      head.appendChild(relic_list[is].name);
+      var plt = document.createTextNode("Position: " + relic_list[is].location);
+      pl.appendChild(plt);
+      var ptt = document.createTextNode("Description: " + relic_list[is].text);
+      pt.appendChild(ptt);
+      
       $("#History > div").appendChild(head);
+      $("#History > div").appendChild(pl);
+      $("#History > div").appendChild(pl);
     }
 
   }

@@ -9,6 +9,17 @@ html, body{
 	font-family: 'Yellowtail';
 }
 
+#help {
+	width: 5%;
+	top: 5%;
+	right: 5%;
+}
+
+#help {
+	width: 5%;
+	top: 50%;
+	right: 5%;
+}
 /* any page with the hide class is not displyed */
 .hide{
   display: none;

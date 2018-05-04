@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
   <title>Grand Discovery</title>
-  <meta name="viewport" content="width=device-width, height=device-height, intitial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, intitial-scale=1 , viewport-fit=cover”">
   <!-- Apple stuff -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
@@ -34,6 +34,7 @@
 
 	<div data-role="page" class="view" id="login">
 	  <div role="main" id="login_layout">
+			<h1> Grand Discovery</h1>
 			<div>
 				<form onsubmit="login()">
 		    	 Username:<br>
@@ -70,8 +71,10 @@
 	  </div>
 		<div id= "Guide">
 			<img id="arrow" src="assets/misc/Arrow.png" alt="^^^" title="view profile">
-			<p id= "metric"> waiting for measurements... </p>
+			<p id="title"></p>
+			<p id= "metric"> waiting for coordinates... </p>
 			<p id="imperial"></p>
+			<p id="title"></p>
 		</div>
 		<div id="mySideBar" class="mapBar">
 		  <div id="map-canvas" class="map">

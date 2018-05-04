@@ -458,7 +458,9 @@ function found(){
   storage.removeItem(user.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
-  Pop_history();
+  navigator.vibrate(1000);
+  navigator.notification.alert("You found " + Relic_pointer.name, Pop_history(), "Congrats",)
+
 }
 
 /* Set the width of the side navigation to 100% */
@@ -479,17 +481,9 @@ function Pop_history(){
     var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
     console.log(is);
     if(is > -1){
-      var head = document.createElement("H2");
-      head.appendChild(relic_list[is].name);
-
-      var pl = document.createElement("P");
-      var plt = document.createTextNode("Position: " + relic_list[is].location);
-      pl.appendChild(plt);
-
-      var pt = document.createElement("P");
-      var ptt = document.createTextNode("Description: " + relic_list[is].text);
-      pt.appendChild(ptt);
-
+      var head = relic_list[is].name;
+      var pl = relic_list[is].location;
+      var pt = relic_list[is].text;
       $("#list_history").append(head);
       $("#list_history").append(pl);
       $("#list_history").append(pl);

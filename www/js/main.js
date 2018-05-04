@@ -112,26 +112,8 @@ function login(){
 	user = JSON.parse(storage.getItem(name));
 	document.getElementById("Prof_name").innerHTML = user.name;
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
-
-  for(i=0; i < user.relics_found.length; i++){
-    var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
-
-    if(is > -1){
-      var head = document.createElement("H2");
-      head.appendChild(relic_list[is].name);
-      var plt = document.createTextNode("Position: " + relic_list[is].location);
-      pl.appendChild(plt);
-      var ptt = document.createTextNode("Description: " + relic_list[is].text);
-      pt.appendChild(ptt);
-
-      $("#History > div").appendChild(head);
-      $("#History > div").appendChild(pl);
-      $("#History > div").appendChild(pl);
-    }
-
-  }
-
   showView("#Profile");
+  Pop_history();
 }
 
 $('a').click("touchstart", function (e) {
@@ -462,6 +444,7 @@ function found(){
   storage.removeItem(user.name);
 	storage.setItem(user.name, JSON.stringify(user));
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
+  Pop_history();
 }
 
 /* Set the width of the side navigation to 100% */
@@ -475,6 +458,29 @@ function hideSide() {
     document.getElementById("mySideBar").style.width = "0";
 }
 
+function Pop_history(){
+  console.log("changing history page")
+  for(i=0; i < user.relics_found.length; i++){
+    var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
+
+    if(is > -1){
+      var head = document.createElement("H2");
+      head.appendChild(relic_list[is].name);
+
+      var pl = document.createElement("P");
+      var plt = document.createTextNode("Position: " + relic_list[is].location);
+      pl.appendChild(plt);
+
+      var pt = document.createElement("P");
+      var ptt = document.createTextNode("Description: " + relic_list[is].text);
+      pt.appendChild(ptt);
+
+      $("#History > div").appendChild(head);
+      $("#History > div").appendChild(pl);
+      $("#History > div").appendChild(pl);
+    }
+  }
+}
 
 /* Distance calculations adapted from https://www.movable-type.co.uk/scripts/latlong.html#latlon-src  */
 

@@ -103,7 +103,7 @@ $('form').submit(function (evt) {
 function login(){
 	var name = document.getElementById('username').value;
 
-	if (localStorage.getItem('username') === null) { //user doesn't exist yet create new user
+	if (localStorage.getItem(name) === null) { //user doesn't exist yet create new user
 		user.name = name;
 		user.relics_found = [];
 		storage.setItem(name, JSON.stringify(user));
@@ -123,7 +123,7 @@ function login(){
       pl.appendChild(plt);
       var ptt = document.createTextNode("Description: " + relic_list[is].text);
       pt.appendChild(ptt);
-      
+
       $("#History > div").appendChild(head);
       $("#History > div").appendChild(pl);
       $("#History > div").appendChild(pl);
@@ -162,6 +162,7 @@ function onLocSuccess(pos){
 
 	if(D < 200){
 		document.getElementById("map_button").style.display = "block";
+    is = user.relics_found.map(function(e) { return e.name; }).indexOf(Relic_pointer.name);
 		if(D < 5 && $.inArray(Relic_pointer.name) == -1){
 			found(Relic_pointer);
 		}
@@ -211,7 +212,8 @@ function map_callback() {
 
   function drawMap(latlng) {
       var myOptions = {
-          zoom: 19,
+          zoom: 18,
+          center: new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long),
           streetViewControl: false,
           center: latlng,
           zoomControl: false,
@@ -428,12 +430,12 @@ function map_callback() {
       };
       var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
       // Add an overlay to the map of current lat/lng
-      var marker = new google.maps.Marker({
+      var popup = new google.maps.Marker({
           position: latlng,
+          label: "U",
          	map: map,
       });
       console.log("map ready");
-      map.setCenter( new google.maps.LatLng(Relic_pointer.Goal_pos.lat, Relic_pointer.Goal_pos.long));
   }
 }
 

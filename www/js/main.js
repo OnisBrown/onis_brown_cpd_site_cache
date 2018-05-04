@@ -112,8 +112,9 @@ function login(){
 	user = JSON.parse(storage.getItem(name));
 	document.getElementById("Prof_name").innerHTML = user.name;
 	document.getElementById("Prof_count").innerHTML = user.relics_found.length + " relics found";
-  showView("#Profile");
   Pop_history();
+  showView("#Profile");
+
 }
 
 $('a').click("touchstart", function (e) {
@@ -133,6 +134,19 @@ $('a').click("touchstart", function (e) {
   showView(currentView);
 
 });
+
+$('.Quit').click("touchstart", function (e) {
+  console.log("quitting")
+  showView("#login")
+});
+
+$('.help').click("touchstart", function (e) {
+  document.getElementById("tooltip").style.display = "block";
+});
+
+function hidetool(){
+  document.getElementById("tooltip").style.display = "none";
+}
 
 function onLocSuccess(pos){
 	Relic_pointer.Cur_pos.lat = pos.coords.latitude;
@@ -460,6 +474,7 @@ function hideSide() {
 
 function Pop_history(){
   console.log("changing history page")
+  console.log(user.relics_found.length)
   for(i=0; i < user.relics_found.length; i++){
     var is = relic_list.map(function(e) { return e.name; }).indexOf(user.relics_found[i]);
 
@@ -475,9 +490,9 @@ function Pop_history(){
       var ptt = document.createTextNode("Description: " + relic_list[is].text);
       pt.appendChild(ptt);
 
-      $("#History > div").appendChild(head);
-      $("#History > div").appendChild(pl);
-      $("#History > div").appendChild(pl);
+      $("#list_history").appendChild(head);
+      $("#list_history").appendChild(pl);
+      $("#list_history").appendChild(pl);
     }
   }
 }

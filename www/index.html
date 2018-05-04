@@ -18,10 +18,21 @@
 
 <body>
 	<img class="help" src="assets/misc/help.png" alt="help" title="app help">
-	<img class="Quit" src="assets/misc/Exit" alt="quit" title="leave app">
+	<img class="Quit" src="assets/misc/Exit.png" alt="quit" title="leave app">
+	<div id=tooltip>
+		<p class="closebtn" onclick="hidetool()">&times;</p>
+		<h1 id="helphead"> help </h1>
+		<p id="helppar"> Welcome to Grand Discovery Beta. <br>
+			There are a limited number of relics available.<br>
+			The scroll will take you to your found relics.<br>
+			The map will take you to the navigation screen where you can select a relic to hunt.<br>
+			The cheat button is used to trigger a found event incase you can't be bothered to go.<br>
+			That handsome sillouette will take you to your profile where you can see your stats.<br>
+			To exit use the icon in the top right. <br> Enjoy!!
+		</p>
+	</div>
 
 	<div data-role="page" class="view" id="login">
-
 	  <div role="main" id="login_layout">
 			<div>
 				<form onsubmit="login()">
